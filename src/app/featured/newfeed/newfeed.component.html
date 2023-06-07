@@ -1,0 +1,19 @@
+<div class="newfeed-container">
+    <div class="form-container" [formGroup]="form">
+        <div class="field-container">
+            <label for="tit">Article Title<span *ngIf="title?.errors != null">*</span></label>
+            <input type="text" #tit placeholder="Article Title" formControlName="tit">
+        </div>
+        <div class="field-container">
+            <label for="content">Content<span *ngIf="cont?.errors != null">*</span></label>
+            <textarea name="content" #content cols="30" rows="10" placeholder="Enter content..." formControlName="content"></textarea>
+        </div>
+        <div class="field-container">
+            <label for="tags">Tags</label>
+            <input type="text" #tags placeholder="Enter Tags">
+        </div>
+        <div class="btn-container">
+            <button type="button" [disabled]="!form.valid" (click)="display()">POST</button>
+        </div>
+    </div>
+</div>

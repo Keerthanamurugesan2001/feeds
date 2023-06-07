@@ -1,0 +1,32 @@
+.header {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 15px;
+    margin-bottom: 25px;
+    padding: 20px;
+    background-color: black;
+    font-weight: bolder;
+    .nav-bar {
+        display: flex;
+        justify-content: left;
+        flex-direction: row;
+        width: fit-content;
+        gap: 50px;
+        list-style-type: none;
+        .nav-tab {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: fit-content;
+            height: 50px;
+        }
+        .nav-tab:hover {
+            border-bottom: 1px solid white;
+            transition: 1s;
+        }
+        li {
+            cursor: pointer;
+        }
+    }
+}

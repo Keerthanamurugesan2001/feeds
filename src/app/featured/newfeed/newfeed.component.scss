@@ -1,0 +1,49 @@
+.newfeed-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .form-container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        width: 700px;
+        gap: 25px;
+        .field-container {
+            display: flex;
+            width: 700px;
+            flex-direction: row;
+            justify-content: space-between;
+            input {
+                width: 255px;
+                height: 35px;
+            }
+        }
+        .btn-container {
+            display: flex;
+            flex-direction: row;
+            width: 700px;
+            justify-content: right;
+            box-shadow: 10px white;
+            button {
+                width: 120px;
+                height: 45px;
+                background-color: #4CAF50;
+                color: white;
+                font-weight: 800;
+                font-size: 15px;
+                border-radius: 5px;
+                border-color: #3e3e3e;
+                border-style: unset;
+                padding: 5px;
+                cursor: not-allowed;
+            }
+            button:hover:not(:disabled) {
+                background-color: black;
+                transition: 0.5s;
+                cursor: pointer;
+            }
+        }
+    }
+}
