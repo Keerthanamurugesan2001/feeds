@@ -8,6 +8,9 @@ import { NewfeedComponent } from './featured/newfeed/newfeed.component';
 import { HeaderComponent } from './core/layout/header/header.component';
 import { FooterComponent } from './core/layout/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SigninComponent } from './featured/signin/signin.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AppMaterialModule } from './material-module';
 
 @NgModule({
   declarations: [
@@ -16,13 +19,17 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppComponent,
     NewfeedComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    SigninComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     FormsModule,
+    BrowserAnimationsModule,
+    AppMaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
