@@ -16,9 +16,9 @@
         padding: 10px 20px;
         font-size: large;
     }
-    span:hover{
-        border-bottom: 2px solid rgb(85, 202, 85);
-    }
+    // span:hover{
+    //     border-bottom: 2px solid rgb(85, 202, 85);
+    // }
 }
 .feed-head{
     margin: 20px 0px;
@@ -34,6 +34,8 @@
 }
 .feed-body{
     display: block;
+    height: 75px;
+    overflow: hidden;
 }
 .feed-foot{
     margin: 20px 0px;
@@ -47,6 +49,7 @@
     a{
         text-decoration: none;
         align-items: center;
+        color: rgb(24, 24, 170);
     }
 }
 .feed-foot-right{
@@ -62,6 +65,35 @@
         width: auto;
     }
 }
+.right-container {
+    padding: 20px;
+
+    a{
+        cursor: pointer;
+        text-decoration: none;
+        margin: 0px 5px;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 35%;
+        color: whitesmoke;
+    }
+    .container-feeds{
+        background-color: rgb(135, 137, 139);
+        padding: 20px;
+        border-radius: 1%;
+        div{
+            margin: 30px 0px;
+            display: flex;
+            display: inline-block;
+        }
+    }
+}
 .border-bottom{
     border-bottom: 2px solid rgb(90, 94, 90);
+}
+.border-bottom-tabs{
+    border-bottom:  2px solid rgb(85, 202, 85);
+}
+a{
+    cursor: pointer;
 }
