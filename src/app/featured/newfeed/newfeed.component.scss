@@ -2,6 +2,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 80vh;
     .form-container {
         display: flex;
         flex-direction: column;
@@ -10,34 +11,73 @@
         height: fit-content;
         width: 700px;
         gap: 25px;
+        padding: 50px;
+        border: 1px solid #3e3e3e;
+        border-radius: 20px;
+        box-shadow: #4CAF50 2px 2px 3px 4px;
+        
         .field-container {
             display: flex;
             width: 700px;
             flex-direction: row;
             justify-content: space-between;
             input {
-                width: 255px;
+                width: 500px;
                 height: 35px;
+                border-radius: 5px;
+                border-style: unset;
+                border: 1px solid red;
+            }
+            textarea {
+                resize: none;
+                width: 500px;
+                border-radius: 5px;
+                border-style: unset;
+                border: 1px solid red;
+            }
+            span {
+                color: red;
+            }
+            .tag-chips {
+                position: relative;
+                left: 200px;
+                color: white;
+                .tag-chip {
+                    background-color: #4CAF50;
+                    color: white;
+                    font-family: 'Courier New', Courier, monospace;
+                    font-weight: bold;
+                }
             }
         }
         .btn-container {
             display: flex;
             flex-direction: row;
+            gap: 20px;
             width: 700px;
             justify-content: right;
             box-shadow: 10px white;
             button {
                 width: 120px;
                 height: 45px;
-                background-color: #4CAF50;
                 color: white;
                 font-weight: 800;
-                font-size: 15px;
+                font-size: 17px;
                 border-radius: 5px;
-                border-color: #3e3e3e;
                 border-style: unset;
                 padding: 5px;
+            }
+            .btn-post {
+                background-color: #4CAF50;
                 cursor: not-allowed;
+                opacity: 0.5;
+            }
+            .btn-cancel {
+                background-color: red;
+            }
+            button:not(:disabled) {
+                opacity: 1;
+                transition: 0.3s;
             }
             button:hover:not(:disabled) {
                 background-color: black;

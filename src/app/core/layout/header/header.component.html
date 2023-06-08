@@ -1,16 +1,16 @@
 <div class="header">
     <ul class="nav-bar">
-        <div class="nav-tab" routerLink="home">
-            <li>Home</li>
+        <div #home class="nav-tab">
+            <button type="button" routerLink="/home">Home</button>
+        </div>
+        <div #new class="nav-tab">
+            <button type="button" routerLink="/newfeed">New Feed</button>
+        </div>
+        <div #setting class="nav-tab">
+            <button type="button" routerLink="/settings">Settings</button>
         </div>
         <div class="nav-tab">
-            <li>New Feed</li>
-        </div>
-        <div class="nav-tab">
-            <li>Settings</li>
-        </div>
-        <div class="nav-tab" routerLink="signin">
-            <li>Signin / Login</li>
+            <button type="button" routerLink="/signin">Log In / Sign Up</button>
         </div>
     </ul>
 </div>

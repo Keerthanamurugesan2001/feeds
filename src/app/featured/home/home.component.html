@@ -17,13 +17,13 @@
                     </div>
     
                 </div>
-                <div class="feed-body">
+                <div [ngClass]="enableReadMore ? 'feed-body-more' : 'feed-body'">
                     <h3>{{post.title}}</h3>
                     <p>{{post.body}}</p>
                 </div>
                 <div class="feed-foot">
                     <div class="feed-foot-left">
-                        <a href="#">Read more..</a>
+                        <li #toggle (click)="toggleReadMore()">{{ toogleVal }}</li>
                     </div>
                     <div class="feed-foot-right" >
                         <div *ngFor="let i of post.tag">

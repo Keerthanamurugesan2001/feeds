@@ -38,12 +38,12 @@ $feeds-theme: mat.define-light-theme((
     padding: 0;
     margin: 0;
 }
+.mat-typography {
+  font-family: 'Courier New', Courier, monospace;
+  color: white;
+}
 body {
     margin: 0;
     background-color: #3e3e3e;
     color: white;
-    font-family: 'Courier New', Courier, monospace;
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

@@ -20,13 +20,20 @@
             align-items: center;
             width: fit-content;
             height: 50px;
-        }
-        .nav-tab:hover {
-            border-bottom: 1px solid white;
-            transition: 1s;
-        }
-        li {
-            cursor: pointer;
+            button {
+                height: 50px;
+                color: white;
+                background-color: black;
+                border-style: unset;
+                font-weight: lighter;
+                font-size: medium;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            button:hover {
+                border-bottom: 2px solid #4CAF50;
+                font-weight:bolder;
+                transition: 0.1s;
+            }
         }
     }
 }

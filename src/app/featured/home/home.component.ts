@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ViewChildren } from '@angular/core';
+import { UserDetails } from 'src/app/core/models/UserDetails';
+import { UserContentService } from 'src/app/core/services/api/user-content.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -6,14 +8,25 @@ import { UserService } from 'src/app/core/services/user.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent {
-  // public user_detail: ;
+export class HomeComponent implements OnInit {
+
   public borderBottom = "border-bottom"
   public is_global = true
   public is_not_global = false
-  // constructor(u: UserService){
-  //   user_detail = this.user
-  // }
+  public contents: UserDetails[] = [];
+  public enableReadMore: boolean = false;
+  @ViewChildren('toogle') li: ElementRef | undefined;
+  toogleVal: string = 'Read More'
+
+
+  constructor(private userContentService: UserContentService) {}
+
+
+  ngOnInit(): void {
+      this.contents = this.userContentService.getUserContent(2);
+      console.warn(this.contents);
+  }
+
   public user = {
     username: 'keerthu',
     email: 'keerthuofficial2001@gmail.com',
@@ -61,5 +74,15 @@ export class HomeComponent {
   globalfeeds(){
     this.is_global = true
     this.is_not_global = false
+  }
+
+  toggleReadMore(): void {
+    this.enableReadMore = !this.enableReadMore;
+    if(this.enableReadMore == true) {
+      this.toogleVal = 'Read Less'
+    }
+    else {
+      this.toogleVal = 'Read More'
+    }
   }
 }

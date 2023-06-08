@@ -3,12 +3,14 @@ import { RouterModule, Routes } from '@angular/router';
 import { NewfeedComponent } from './featured/newfeed/newfeed.component';
 import { HomeComponent } from './featured/home/home.component';
 import { SigninComponent } from './featured/signin/signin.component';
+import { SettingsComponent } from './featured/settings/settings.component';
 
 const routes: Routes = [
-  {path: '', redirectTo:'/home', pathMatch: 'full'},
+  { path: 'home', component: HomeComponent },
   { path: 'newfeed', component: NewfeedComponent },
-  {path: 'home', component: HomeComponent},
-  {path:'signin', component: SigninComponent}
+  { path:'signin', component: SigninComponent },
+  { path: 'settings', component: SettingsComponent },
+  { path: '', redirectTo: 'newfeed', pathMatch: "full" },
 ];
 
 @NgModule({

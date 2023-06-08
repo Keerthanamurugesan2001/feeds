@@ -15,6 +15,7 @@
     span{
         padding: 10px 20px;
         font-size: large;
+        cursor: pointer;
     }
     // span:hover{
     //     border-bottom: 2px solid rgb(85, 202, 85);
@@ -34,7 +35,11 @@
 }
 .feed-body{
     display: block;
-    height: 75px;
+    height: 85px;
+    overflow: hidden;
+}
+.feed-body-more {
+    display: block;
     overflow: hidden;
 }
 .feed-foot{
@@ -46,10 +51,10 @@
 
 .feed-foot-left{
     margin-right: auto;
-    a{
-        text-decoration: none;
-        align-items: center;
-        color: rgb(24, 24, 170);
+    li {
+        list-style-type: none;
+        color: #4CAF50;
+        cursor: pointer;
     }
 }
 .feed-foot-right{

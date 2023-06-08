@@ -10,17 +10,39 @@ export class NewfeedComponent {
 
   constructor(private fb: FormBuilder) {}
 
+
+
   form = this.fb.group({
-    tit: this.fb.control('', [Validators.required]),
+    title: this.fb.control('', [Validators.required]),
     content: this.fb.control('', [Validators.required]),
+    tags: this.fb.control(''),
   });
 
+  chips: string[] = [];
+
+
+
   get title() {
-    return this.form.get('tit');
+    return this.form.get('title');
   }
 
-  get cont() {
+  get content() {
     return this.form.get('content');
+  }
+
+  get tags() {
+    return this.form.get('tags');
+  }
+
+  addChip(): void {
+    let s: string | undefined | null = this.form.value.tags;
+    if(s != null || typeof s != 'undefined') {
+      let str = s as string;
+      if(str.length != 0) {
+        this.chips.push(str);
+        this.form.get('tags')?.setValue('');
+      }
+    }
   }
 
   display(): void {
