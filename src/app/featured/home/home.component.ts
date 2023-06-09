@@ -85,4 +85,7 @@ export class HomeComponent implements OnInit {
       this.toogleVal = 'Read More'
     }
   }
+  tags_search(): void{
+
+  }
 }

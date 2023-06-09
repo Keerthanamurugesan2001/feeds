@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -8,12 +9,16 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SigninComponent {
 
+  constructor(private route: Router){}
   public userForm = new FormGroup({
-    username: new FormControl('keerthu'),
-    email: new FormControl(''),
-    password: new FormControl(), 
+    username: new FormControl('', Validators.required),
+    email: new FormControl('', Validators.required),
+    password: new FormControl('',Validators.required), 
   });
   checkUser(){
-    
+    this.route.navigate(['/home'])
+  }
+  signIn(){
+    this.route.navigate(['/home'])
   }
 }

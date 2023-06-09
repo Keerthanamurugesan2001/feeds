@@ -1,16 +1,27 @@
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+  private tokenKey = 'jwtToken';
 
-  constructor() { }
-  public user = {
-    username: 'keerthu',
-    email: 'keerthuofficial2001@gmail.com',
-    password: 'keerthu2001',
-    created_at: '2022-01-09',
-    updated_at: '2022-01-09',
+  constructor(private http: HttpClient) { }
+
+  getToken(): string | null {
+    return localStorage.getItem(this.tokenKey);
+  }
+
+  setToken(token: string): void {
+    localStorage.setItem(this.tokenKey, token);
+  }
+
+  removeToken(): void {
+    localStorage.removeItem(this.tokenKey);
+  }
+
+  create_user(){
+    // return this.http.post('http://127.0.0.1:5000/deleteMessages')
   }
 }

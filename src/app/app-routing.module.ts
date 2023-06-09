@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'newfeed', component: NewfeedComponent },
   { path:'signin', component: SigninComponent },
   { path: 'settings', component: SettingsComponent },
-  { path: '', redirectTo: 'newfeed', pathMatch: "full" },
+  { path: '', redirectTo: 'home', pathMatch: "full" },
 ];
 
 @NgModule({
