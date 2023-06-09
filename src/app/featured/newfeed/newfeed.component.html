@@ -2,24 +2,65 @@
     <div class="form-container" [formGroup]="form">
         <div class="field-container">
             <label for="tit">Article Title<span *ngIf="title?.errors != null">*</span></label>
-            <input  type="text" #tit placeholder="Article Title" formControlName="title">
+            <input  [ngClass]="(title?.errors != null) ? 'title-input-error' : 'title-input-success'"  type="text" #tit placeholder="Article Title" formControlName="title">
+        </div>
+        <div class="field-container">
+            <label for="contType">Content Type<span *ngIf="contentType?.errors != null">*</span></label>
+            <div class="priority-container" #contType>
+                <div class="priority-radio">
+                    <input type="radio" formControlName="contentType" value="content">
+                    <label>Content</label>
+                </div>
+                <div class="priority-radio">
+                    <input type="radio" formControlName="contentType" value="poll">
+                    <label>Poll</label>
+                </div>
+            </div>
         </div>
         <div class="field-container">
             <label for="cont">Content<span *ngIf="content?.errors != null">*</span></label>
-            <textarea  name="content" #cont cols="30" rows="10" placeholder="Enter content..." formControlName="content"></textarea>
+            <textarea [ngClass]="(content?.errors != null) ? 'content-textarea-error' : 'content-textarea-success'" name="content" #cont cols="30" rows="10" placeholder="Enter content..." formControlName="content"></textarea>
         </div>
         <div class="field-container">
-            <label for="tag">Tags<span *ngIf="tags?.errors != null">*</span></label>
-            <input type="text" #tag placeholder="Enter Tags" formControlName="tags" (keyup.enter)="addChip()">
+            <label for="tag">Tags<span *ngIf="chips.length == 0">*</span></label>
+            <input  [ngClass]="(chips.length != 0) ? 'tags-input-error' : 'tags-input-success'" type="text" #tag placeholder="Enter Tags" formControlName="tags" (keyup.enter)="addChip()">
         </div>
         <div class="field-container">
             <mat-chip-grid class="tag-chips">
-                <mat-chip-row class="tag-chip" *ngFor="let chip of chips">{{ chip }}</mat-chip-row>
+                <mat-chip-row class="tag-chip" *ngFor="let chip of chips; let i=index;">{{ chip }}
+                    <button type="button" (click)="deleteChip(i)">X</button>
+                </mat-chip-row>
             </mat-chip-grid>
+        </div>
+        <div class="field-container">
+            <label for="priority">Feed Priority<span *ngIf="feedPriority?.errors != null">*</span></label>
+            <div class="priority-container" #priority>
+                <div class="priority-radio">
+                    <input type="radio" formControlName="feedPriority" value="global">
+                    <label>Global</label>
+                </div>
+                <div class="priority-radio">
+                    <input type="radio" formControlName="feedPriority" value="local">
+                    <label>Local</label>
+                </div>
+            </div>
+        </div>
+        <div class="field-container">
+            <label for="comment">Comment Priority<span *ngIf="commentPriority?.errors != null">*</span></label>
+            <div class="priority-container" #comment>
+                <div class="priority-radio">
+                    <input type="radio" formControlName="commentPriority" value="yes">
+                    <label>Yes</label>
+                </div>
+                <div class="priority-radio">
+                    <input type="radio" formControlName="commentPriority" value="no">
+                    <label>No</label>
+                </div>
+            </div>
         </div>
         <div class="btn-container">
             <button class="btn-cancel" type="button" routerLink="/home">Cancel</button>
-            <button class="btn-post" type="button" [disabled]="!form.valid" (click)="display()">POST</button>
+            <button class="btn-post" type="button" [disabled]="!form.valid" (click)="postContent()">POST</button>
         </div>
     </div>
 </div>

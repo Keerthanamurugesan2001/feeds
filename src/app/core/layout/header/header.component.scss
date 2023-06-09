@@ -20,7 +20,7 @@
             align-items: center;
             width: fit-content;
             height: 50px;
-            button {
+            .btn-nav {
                 height: 50px;
                 color: white;
                 background-color: black;
@@ -29,11 +29,29 @@
                 font-size: medium;
                 font-family: 'Courier New', Courier, monospace;
             }
-            button:hover {
+            .btn-nav-current {
+                height: 50px;
+                color: white;
+                background-color: black;
+                border-style: unset;
+                font-weight: lighter;
+                font-size: medium;
+                font-family: 'Courier New', Courier, monospace;
+                border-bottom: 2px solid #4CAF50;
+                font-weight:bolder;
+            }
+            .btn-nav:hover {
                 border-bottom: 2px solid #4CAF50;
                 font-weight:bolder;
                 transition: 0.1s;
             }
         }
+    }
+}
+
+@media all and (max-width: 1034px) {
+    .header {
+        position: relative;
+        right: 0%;
     }
 }

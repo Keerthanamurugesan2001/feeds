@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { UserDetails } from '../../models/UserDetails';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-const baseURL: string = 'http://localhost:8080/api/backend';
+const baseURL: string = 'https://8de4-14-98-32-198.ngrok-free.app/api/v1/';
 
 @Injectable({
   providedIn: 'root'
@@ -11,23 +12,14 @@ export class UserContentService {
 
   constructor(private http: HttpClient) {}
 
-  getUserContent(userId: number): UserDetails[] {
-    let data: UserDetails[] = [];
-    let dummy: UserDetails = {
-      id: 0,
-      title: '',
-      body: '',
-      user_id: 0,
-      is_global: false,
-      tag: '',
-      created_at: new Date(),
-      updated_at: new Date(),
-
-    };
-    this.http.get<UserDetails[]>(baseURL + '/content/' + userId).subscribe(
-      (content) => data = content,
-      (error) => data.push(dummy)
-    );
-    return data;
+  getUserContent(): Observable<UserDetails[]> {
+    return this.http.get<UserDetails[]>(baseURL + 'post/all')
   }
+
+
+  postUserContent(details: UserDetails): Observable<UserDetails> {
+    console.log(details);
+    return this.http.post<UserDetails>(baseURL + 'post', details);
+  }
+
 }

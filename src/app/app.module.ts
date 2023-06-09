@@ -17,6 +17,7 @@ import { HomeComponent } from './featured/home/home.component';
 import { SettingsComponent } from './featured/settings/settings.component';
 import { MatChipsModule} from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -42,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http';
     MatInputModule,
     MatChipsModule,
     HttpClientModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
