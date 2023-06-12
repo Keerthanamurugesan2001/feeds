@@ -2,7 +2,7 @@
     <div class="form-container" [formGroup]="form">
         <div class="field-container">
             <label for="tit">Article Title<span *ngIf="title?.errors != null">*</span></label>
-            <input  [ngClass]="(title?.errors != null) ? 'title-input-error' : 'title-input-success'"  type="text" #tit placeholder="Article Title" formControlName="title">
+            <input  [ngClass]="(title?.touched == false) ? 'title-input-touch' : (title?.errors != null) ? 'title-input-error' : 'title-input-success'"  type="text" #tit placeholder="Article Title" formControlName="title">
         </div>
         <div class="field-container">
             <label for="contType">Content Type<span *ngIf="contentType?.errors != null">*</span></label>
@@ -19,11 +19,11 @@
         </div>
         <div class="field-container">
             <label for="cont">Content<span *ngIf="content?.errors != null">*</span></label>
-            <textarea [ngClass]="(content?.errors != null) ? 'content-textarea-error' : 'content-textarea-success'" name="content" #cont cols="30" rows="10" placeholder="Enter content..." formControlName="content"></textarea>
+            <textarea [ngClass]="(content?.touched == false) ? 'content-textarea-touch' : (content?.errors != null) ? 'content-textarea-error' : 'content-textarea-success'" name="content" #cont cols="30" rows="10" placeholder="Enter content..." formControlName="content"></textarea>
         </div>
         <div class="field-container">
             <label for="tag">Tags<span *ngIf="chips.length == 0">*</span></label>
-            <input  [ngClass]="(chips.length != 0) ? 'tags-input-error' : 'tags-input-success'" type="text" #tag placeholder="Enter Tags" formControlName="tags" (keyup.enter)="addChip()">
+            <input  [ngClass]="(tags?.touched == false) ? 'tags-input-touch' : (chips.length != 0) ? 'tags-input-error' : 'tags-input-success'" type="text" #tag placeholder="Enter Tags" formControlName="tags" (keyup.enter)="addChip()">
         </div>
         <div class="field-container">
             <mat-chip-grid class="tag-chips">
@@ -60,7 +60,7 @@
         </div>
         <div class="btn-container">
             <button class="btn-cancel" type="button" routerLink="/home">Cancel</button>
-            <button class="btn-post" type="button" [disabled]="!form.valid" (click)="postContent()">POST</button>
+            <button class="btn-post" type="button" [disabled]="!form.valid || chips.length == 0" (click)="postContent()">POST</button>
         </div>
     </div>
 </div>

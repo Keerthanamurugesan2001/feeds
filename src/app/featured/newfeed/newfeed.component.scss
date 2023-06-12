@@ -42,6 +42,15 @@
                 padding: 10px;
                 box-shadow: red 2px 2px 2px 2px;
             }
+            .title-input-touch {
+                width: 500px;
+                height: 35px;
+                border-radius: 5px;
+                border-style: unset;
+                outline: none;
+                padding: 10px;
+                box-shadow: white 2px 2px 2px 2px;
+            }
             .tags-input-success {
                 width: 500px;
                 height: 35px;
@@ -60,6 +69,15 @@
                 padding: 10px;
                 box-shadow: #4CAF50 2px 2px 2px 2px;
             }
+            .tags-input-touch {
+                width: 500px;
+                height: 35px;
+                border-radius: 5px;
+                border-style: unset;
+                outline: none;
+                padding: 10px;
+                box-shadow: white 2px 2px 2px 2px;
+            }
             .content-textarea-success {
                 resize: none;
                 width: 500px;
@@ -77,6 +95,15 @@
                 outline: none;
                 padding: 10px;
                 box-shadow: red 2px 2px 2px 2px;
+            }
+            .content-textarea-touch {
+                resize: none;
+                width: 500px;
+                border-radius: 5px;
+                border-style: unset;
+                outline: none;
+                padding: 10px;
+                box-shadow: white 2px 2px 2px 2px;
             }
             span {
                 color: red;

@@ -15,22 +15,35 @@
                         <h2>{{user.username}}</h2>
                         <h5>{{user.created_at}}</h5>
                     </div>
-    
                 </div>
                 <div class="feed-body">
                     <h3>{{post.title}}</h3>
                     <p>{{post.body}}</p>
                 </div>
-                <div class="feed-foot">
-                    <div class="feed-foot-left">
-                        <li #toggle (click)="toggleReadMore(i)">{{ toogleVal }}</li>
+                <div class="feed-comments" *ngIf="post.isComment">
+                    <div class="feed-comment" *ngFor="let comment of post.comments">
+                        <p>{{ comment.content }}</p>
                     </div>
+                    <div class="comment-btn-container" *ngIf="commentIndex != i">
+                        <button type="button" class="btn-comment" (click)="addComment(i)">Comment</button>
+                    </div>
+                    <div class="feed-new-comment" *ngIf="commentIndex == i" [formGroup]="commentForm">
+                        <textarea class="feed-new-comment-textarea" placeholder="Add Comment..." formControlName="comment"></textarea>
+                        <div class="feed-new-comment-btn-container">
+                            <button class="btn-cancel" type="button" (click)="toggleComment()">Cancel</button>
+                            <button [ngClass]="(commentForm.valid == false) ? 'btn-comment-post-error' : 'btn-comment-post'" type="button" (click)="postComment(1, 1, post.id)">Post</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="feed-foot">
+                    <!-- <div class="feed-foot-left">
+                        <li #toggle (click)="toggleReadMore(i)">{{ toogleVal }}</li>
+                    </div> -->
                     <div class="feed-foot-right" >
                         <div *ngFor="let i of post.tag" class="tags">
                             <span (click)="tags_search()">{{i}}</span>
                         </div>
                     </div>
-    
                 </div>
     
             </div>

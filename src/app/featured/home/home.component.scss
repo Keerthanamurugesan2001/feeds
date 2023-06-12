@@ -35,12 +35,92 @@
 }
 .feed-body{
     display: block;
-    height: 85px;
+    //height: 85px;
     overflow: hidden;
 }
 .feed-body-more {
     display: block;
     overflow: hidden;
+}
+.feed-comments {
+    display: flex;
+    flex-direction: column;
+    .feed-comment {
+        margin: 20px;
+        border-left: 2px solid white;
+        display: flex;
+        flex-direction: column;
+    }
+    .comment-btn-container {
+        display: flex;
+        justify-content: right;
+        .btn-comment {
+            width: 120px;
+            height: 45px;
+            background-color: #4CAF50;
+            color: white;
+            font-weight: 800;
+            font-size: 17px;
+            border-radius: 5px;
+            border-style: unset;
+            padding: 5px;
+            cursor: pointer;
+        }
+    }
+    .feed-new-comment {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        .feed-new-comment-textarea {
+            height: 75px;
+            resize: none;
+            border-radius: 5px;
+            border-style: unset;
+            outline: none;
+            padding: 10px;
+            box-shadow: white 2px 2px 2px 2px;
+        }
+        .feed-new-comment-btn-container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            justify-content: right;
+            .btn-cancel {
+                width: 75px;
+                height: 30px;
+                background-color: red;
+                color: white;
+                font-weight: bold;
+                border-radius: 5px;
+                border-style: unset;
+                padding: 5px;
+                cursor: pointer;
+            }
+            .btn-comment-post {
+                width: 75px;
+                height: 30px;
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+                border-radius: 5px;
+                border-style: unset;
+                padding: 5px;
+                cursor: pointer;
+            }
+            .btn-comment-post-error {
+                width: 75px;
+                height: 30px;
+                background-color: #4CAF50;
+                color: white;
+                font-weight: bold;
+                border-radius: 5px;
+                border-style: unset;
+                padding: 5px;
+                cursor: not-allowed;
+                opacity: 0.5;
+            }
+        }
+    }
 }
 .feed-foot{
     margin: 20px 0px;

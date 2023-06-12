@@ -59,7 +59,7 @@ export class NewfeedComponent {
       let str = s as string;
       if(str.length != 0) {
         this.chips.push(str);
-        this.form.get('tags')?.setValue('');
+        this.tags?.setValue('');
       }
     }
   }
@@ -77,8 +77,8 @@ export class NewfeedComponent {
       createdAt: new Date(),
       updatedAt: new Date(),
       isGlobal: (this.form.value.feedPriority === 'global') ? true : false,
+      isComment: (this.form.value.commentPriority === 'yes') ? true : false,
     };
-    console.warn(typeof JSON.stringify(this.chips));
     this.userContentService.postUserContent(userDetails).subscribe(
       (response) => this.router.navigate(['/home'])
     );

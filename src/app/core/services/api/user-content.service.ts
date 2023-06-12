@@ -18,7 +18,6 @@ export class UserContentService {
 
 
   postUserContent(details: UserDetails): Observable<UserDetails> {
-    console.log(details);
     return this.http.post<UserDetails>(baseURL + 'post', details);
   }
 
