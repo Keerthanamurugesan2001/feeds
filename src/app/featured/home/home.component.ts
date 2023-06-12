@@ -99,6 +99,7 @@ export class HomeComponent implements OnInit {
   }
 
   initPosts(): void {
+    this.posts = [];
     this.userContentService.getUserContent().subscribe(
       (response: any) => {
        response.forEach((ud : any) => {
@@ -114,15 +115,28 @@ export class HomeComponent implements OnInit {
            updatedAt: ud.updatedAt,
          };
          if(userDetails.isComment) {
+          let comments: CommentDetails[] = [];
           this.userCommentService.getAllCommentsForPost(ud.Id).subscribe(
-            (res: CommentDetails[]) => userDetails.comments = res
+            (res: any) => {
+              res.forEach((cd: any) => {
+                let commentDetails: CommentDetails = {
+                  postUserId: cd.postUserId,
+                  commentUserId: cd.commentUserId,
+                  postId: cd.postId,
+                  content: cd.content,
+                  createdAt: cd.createdAt,
+                  updatedAt: cd.updatedAt,
+                };
+                comments.push(commentDetails);
+              });
+              userDetails.comments = comments;
+            }
           );
          }
          this.posts.push(userDetails);
-       }
-     
-   );
-       });
+       }  
+      );
+    });
   }
 
 }

@@ -45,11 +45,32 @@
 .feed-comments {
     display: flex;
     flex-direction: column;
-    .feed-comment {
-        margin: 20px;
-        border-left: 2px solid white;
-        display: flex;
-        flex-direction: column;
+    
+    .comment-section{
+        border-left: 1px dotted;
+        
+        .feed-comment {
+            display: flex;
+            flex-direction: column;
+            .feed-comment-body {
+                display: flex;
+                margin: 10px 0;
+                .feed-comment-body-line {
+                    padding: 0 5px 5px 5px;
+                    display: block;
+                }
+                .feed-comment-body-content { 
+                    width: 90%;
+                                display: flex;
+                                align-items: center;
+                                font-size: 12px;
+                                overflow: hidden;
+                                word-break: break-all;
+                                padding: 10px;
+                                border: 1px solid rgb(255 255 255 / 20%);
+                }
+            }
+        }
     }
     .comment-btn-container {
         display: flex;
