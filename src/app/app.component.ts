@@ -9,7 +9,6 @@ import { Router } from '@angular/router';
 export class AppComponent implements AfterContentChecked {
   
   currentTab: string = '';
-
   constructor(private router: Router) {}
 
   ngAfterContentChecked(): void {
@@ -17,6 +16,8 @@ export class AppComponent implements AfterContentChecked {
     else if(this.router.url.indexOf('newfeed') != -1) this.currentTab = 'newfeed';
     else if(this.router.url.indexOf('settings') != -1) this.currentTab = 'settings';
     else if(this.router.url.indexOf('signin') != -1) this.currentTab = 'signin';
+    else if(this.router.url.indexOf('login') != -1) this.currentTab = 'login';
+
   }
 
 }

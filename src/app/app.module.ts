@@ -18,6 +18,7 @@ import { SettingsComponent } from './featured/settings/settings.component';
 import { MatChipsModule} from '@angular/material/chips';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { LoginComponent } from './featured/login/login.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { MatIconModule } from '@angular/material/icon';
     SigninComponent,
     FieldDirective,
     HomeComponent,
-    SettingsComponent
+    SettingsComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
