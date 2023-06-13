@@ -11,8 +11,8 @@ import { UserService } from 'src/app/core/services/api/user.service';
 })
 export class LoginComponent {
   constructor(private route: Router, private $user: UserService){}
-  public msgTitle = "Success"
-  public msg="You logged In"
+  public msgTitle = ""
+  public msg=""
   public userForm = new FormGroup({
     email: new FormControl('', Validators.required),
     password: new FormControl('',Validators.required), 
@@ -26,7 +26,6 @@ export class LoginComponent {
     }
     this.$user.user_login(userCredential).subscribe(
       (res) => {
-        // this.$user.setToken(res.access_token)
         if(res.message){
           this.msgTitle = "Oops!"
           this.msg = "Invaid credential"
