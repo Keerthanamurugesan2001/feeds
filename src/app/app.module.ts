@@ -20,7 +20,6 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './featured/login/login.component';
 import { SpinnerComponent } from './core/layout/spinner/spinner.component';
-import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
 
 
 @NgModule({

@@ -1,7 +1,7 @@
 import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, HostBinding, HostListener, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoaderService } from './core/services/loader/loader.service';
 import { Subject } from 'rxjs';
+import { LoaderService } from './core/services/loader/loader.service';
 
 @Component({
   selector: 'app-root',

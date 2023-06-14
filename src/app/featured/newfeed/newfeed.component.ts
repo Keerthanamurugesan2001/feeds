@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserDetails } from 'src/app/core/models/UserDetails';
 import { UserContentService } from 'src/app/core/services/api/user-content.service';
-import { LoaderService } from 'src/app/core/services/loader/loader.service';
 
 @Component({
   selector: 'app-newfeed',
@@ -15,8 +14,6 @@ export class NewfeedComponent {
   constructor(private fb: FormBuilder, private userContentService: UserContentService,
     private router: Router) {}
 
-
-
   form = this.fb.group({
     title: this.fb.control('', [Validators.required]),
     contentType: this.fb.control('', [Validators.required]),
@@ -27,8 +24,6 @@ export class NewfeedComponent {
   });
 
   chips: string[] = [];
-
-
 
   get title() {
     return this.form.get('title');
