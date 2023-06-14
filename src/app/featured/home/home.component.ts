@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CommentDetails } from 'src/app/core/models/CommentDetails';
-import { UserDetailsDTO } from 'src/app/core/models/UserDetailsDTO';
 import { UserCommentService } from 'src/app/core/services/api/user-comment.service';
 import { UserContentService } from 'src/app/core/services/api/user-content.service';
 import { LoaderService } from 'src/app/core/services/loader/loader.service';
+import { Page } from 'src/app/core/models/Page';
+import { UserService } from 'src/app/core/services/api/user.service';
+import { BasicUserDetails } from 'src/app/core/models/BasicUserDetails';
+import { PostDetailsDTO } from 'src/app/core/models/PostDetailsDTO';
 
 @Component({
   selector: 'app-home',
@@ -23,9 +26,13 @@ export class HomeComponent implements OnInit {
   commentForm = this.fb.group({
     comment: this.fb.control('', [Validators.required]),
   });
+  totalPages: number[] = [];
+  activePage: number = 0;
+  perPage: number = 5;
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
-    private userCommentService: UserCommentService, private loaderService: LoaderService) {}
+    private userCommentService: UserCommentService, private loaderService: LoaderService,
+    private userService: UserService) {}
 
   ngOnInit(): void {
     this.loaderService.show();
@@ -35,24 +42,74 @@ export class HomeComponent implements OnInit {
     }, 300);
   }
 
-  public user = {
-    username: 'keerthu',
-    email: 'keerthuofficial2001@gmail.com',
-    password: 'keerthu2001',
-    created_at: '2022-01-09',
-    updated_at: '2022-01-09',
-  }
+  // public user = {
+  //   username: 'keerthu',
+  //   email: 'keerthuofficial2001@gmail.com',
+  //   password: 'keerthu2001',
+  //   created_at: '2022-01-09',
+  //   updated_at: '2022-01-09',
+  // }
+
+  public currentUser: BasicUserDetails | null = this.userService.getUserDetails();
    
-  public posts: UserDetailsDTO[] = [];
+  public posts: PostDetailsDTO[] = [];
   public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
 
   yourfeeds(){
+    console.log(this.perPage);
+    
     this.is_not_global = true
     this.is_global = false
+    this.posts = [];
+    let localPageInfo: Page = {
+      userId: this.currentUser?.userId,
+      take: this.perPage,
+      page: 1,
+    };
+    this.userContentService.getUserLocalContent(localPageInfo).subscribe(
+      (response: any) => {
+        this.totalPages = Array(Math.ceil(response.count / this.perPage)).fill(0).map((x, i) => (i + 1));
+        this.activePage = 1;
+       response.data.forEach((ud : any) => {
+         let userDetails: PostDetailsDTO = {
+           id: ud.Id,
+           title: ud.title,
+           body: ud.body,
+           userId: ud.userId,
+           isGlobal: false,
+           isComment: ud.isComment,
+           tag: ud.tag.split(','),
+           createdAt: ud.createdAt,
+           updatedAt: ud.updatedAt,
+         };
+         if(userDetails.isComment) {
+          let comments: CommentDetails[] = [];
+          this.userCommentService.getAllCommentsForPost(ud.Id).subscribe(
+            (res: any) => {
+              res.forEach((cd: any) => {
+                let commentDetails: CommentDetails = {
+                  postUserId: cd.postUserId,
+                  commentUserId: cd.commentUserId,
+                  postId: cd.postId,
+                  content: cd.content,
+                  createdAt: cd.createdAt,
+                  updatedAt: cd.updatedAt,
+                };
+                comments.push(commentDetails);
+              });
+              userDetails.comments = comments;
+            }
+          );
+         }
+         this.posts.push(userDetails);
+       }  
+      );
+    });
   }
   globalfeeds(){
     this.is_global = true
     this.is_not_global = false
+    this.initPosts();
   }
 
   toggleReadMore(i: number): void {
@@ -107,12 +164,127 @@ export class HomeComponent implements OnInit {
     );
   }
 
+
+
+
+  getNextPage(): void {
+    this.posts = [];
+    this.activePage++;
+    this.getFeedsByPage(this.activePage);
+  }
+
+
+
+
+  getPreviousPage(): void {
+    this.posts = [];
+    this.activePage--;
+    this.getFeedsByPage(this.activePage);
+  }
+
+
+  getFeedsByPage(pageNo: number): void {
+    let pageInfo: Page = {
+      userId: this.currentUser?.userId,
+      take: this.perPage,
+      page: pageNo,
+    };
+    if(this.is_global == true) {
+      this.userContentService.getUserGlobalContent(pageInfo).subscribe(
+        (response: any) => {
+         response.data.forEach((ud : any) => {
+           let userDetails: PostDetailsDTO = {
+             id: ud.Id,
+             title: ud.title,
+             body: ud.body,
+             userId: ud.userId,
+             isGlobal: ud.isGlobal,
+             isComment: ud.isComment,
+             tag: ud.tag.split(','),
+             createdAt: ud.createdAt,
+             updatedAt: ud.updatedAt,
+           };
+           if(userDetails.isComment) {
+            let comments: CommentDetails[] = [];
+            this.userCommentService.getAllCommentsForPost(ud.Id).subscribe(
+              (res: any) => {
+                res.forEach((cd: any) => {
+                  let commentDetails: CommentDetails = {
+                    postUserId: cd.postUserId,
+                    commentUserId: cd.commentUserId,
+                    postId: cd.postId,
+                    content: cd.content,
+                    createdAt: cd.createdAt,
+                    updatedAt: cd.updatedAt,
+                  };
+                  comments.push(commentDetails);
+                });
+                userDetails.comments = comments;
+              }
+            );
+           }
+           this.posts.push(userDetails);
+         }  
+        );
+      });
+    }
+
+    else {
+      this.userContentService.getUserLocalContent(pageInfo).subscribe(
+        (response: any) => {
+         response.data.forEach((ud : any) => {
+           let userDetails: PostDetailsDTO = {
+             id: ud.Id,
+             title: ud.title,
+             body: ud.body,
+             userId: ud.userId,
+             isGlobal: false,
+             isComment: ud.isComment,
+             tag: ud.tag.split(','),
+             createdAt: ud.createdAt,
+             updatedAt: ud.updatedAt,
+           };
+           if(userDetails.isComment) {
+            let comments: CommentDetails[] = [];
+            this.userCommentService.getAllCommentsForPost(ud.Id).subscribe(
+              (res: any) => {
+                res.forEach((cd: any) => {
+                  let commentDetails: CommentDetails = {
+                    postUserId: cd.postUserId,
+                    commentUserId: cd.commentUserId,
+                    postId: cd.postId,
+                    content: cd.content,
+                    createdAt: cd.createdAt,
+                    updatedAt: cd.updatedAt,
+                  };
+                  comments.push(commentDetails);
+                });
+                userDetails.comments = comments;
+              }
+            );
+           }
+           this.posts.push(userDetails);
+         }  
+        );
+      });
+    }
+  }
+
+
+
+
   initPosts(): void {
     this.posts = [];
-    this.userContentService.getUserContent().subscribe(
+    let pageInfo: Page = {
+        take: this.perPage,
+        page: 1,
+    };
+    this.userContentService.getUserGlobalContent(pageInfo).subscribe(
       (response: any) => {
-       response.forEach((ud : any) => {
-         let userDetails: UserDetailsDTO = {
+        this.totalPages = Array(Math.ceil(response.count / 5)).fill(0).map((x, i) => (i + 1));
+        this.activePage = 1;
+       response.data.forEach((ud : any) => {
+         let userDetails: PostDetailsDTO = {
            id: ud.Id,
            title: ud.title,
            body: ud.body,
@@ -146,6 +318,7 @@ export class HomeComponent implements OnInit {
        }  
       );
     });
+
   }
 
 }

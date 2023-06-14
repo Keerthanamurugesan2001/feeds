@@ -1,4 +1,6 @@
-export interface UserDetails {
+import { CommentDetails } from "./CommentDetails";
+
+export interface PostDetailsDTO {
 
     id?: number;
     title: string;
@@ -6,7 +8,8 @@ export interface UserDetails {
     userId: number;
     isGlobal: boolean;
     isComment: boolean;
-    tag: string;
+    tag: string[];
+    comments?: CommentDetails[]; 
     createdAt: Date;
     updatedAt: Date;
 

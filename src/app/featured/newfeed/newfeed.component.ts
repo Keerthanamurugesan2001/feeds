@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserDetails } from 'src/app/core/models/UserDetails';
+import { PostDetails } from 'src/app/core/models/PostDetails';
 import { UserContentService } from 'src/app/core/services/api/user-content.service';
+import { UserService } from 'src/app/core/services/api/user.service';
 
 @Component({
   selector: 'app-newfeed',
@@ -12,7 +13,7 @@ import { UserContentService } from 'src/app/core/services/api/user-content.servi
 export class NewfeedComponent {
 
   constructor(private fb: FormBuilder, private userContentService: UserContentService,
-    private router: Router) {}
+    private router: Router, private userService: UserService) {}
 
   form = this.fb.group({
     title: this.fb.control('', [Validators.required]),
@@ -65,8 +66,10 @@ export class NewfeedComponent {
   }
 
   postUserContent(): void {
-    let userDetails: UserDetails = {
-      userId: 1,
+    console.log(this.userService.getUserDetails());
+    
+    let userDetails: PostDetails = {
+      userId: this.userService.getUserDetails()?.userId as number,
       body: this.form.value.content as string,
       title: this.form.value.title as string,
       tag: this.chips.toString(),

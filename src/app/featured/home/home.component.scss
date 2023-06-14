@@ -6,6 +6,42 @@ z-index: 999;
 }
 .left-container{
     width: 80%;
+    .paginator {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        .paginator-items {
+            display: flex;
+            flex-direction: row;
+        }
+        .paginator-items span {
+            font-size: smaller;
+        }
+        .paginator-page {
+            display: flex;
+            flex-direction: row;
+            .pageno {
+                display: flex;
+                flex-direction: row;
+            }
+            .pageno a {
+                text-decoration: none;
+                padding: 8px 15px;
+            }
+            .pageno a.active {
+                border-radius: 5px;
+                background-color: #4CAF50;
+            }
+        }
+        .paginator-page a {
+            text-decoration: none;
+            padding: 8px 15px;
+        }
+        .paginator-page a.disabled {
+            pointer-events: none;
+        }
+    }
 }
 .right-container{
     width: 20%;
@@ -32,6 +68,13 @@ z-index: 999;
     }
     .user-detail{
         margin: auto 12px;
+        .username {
+            font-weight: bold; 
+            font-size: larger;
+        }
+        .history {
+            font-size: small;
+        }
     }
 }
 .feed-body{

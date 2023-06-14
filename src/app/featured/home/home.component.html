@@ -12,8 +12,8 @@
                     <img src="/assets/img/smile.jpg" alt="profile-image">
                     </div>
                     <div class="user-detail">
-                        <h2>{{user.username}}</h2>
-                        <h5>{{post.createdAt | dateAgo}}</h5>
+                        <summary class="username">{{ currentUser?.userName }}</summary>
+                        <summary class="history">{{ post.createdAt | dateAgo }}</summary>
                     </div>
                 </div>
                 <div class="feed-body">
@@ -56,7 +56,26 @@
     
             </div>
             </div>
-           
+            <div class="paginator">
+                <div class="paginator-items">
+                    <span>Items Per Page</span>
+                    <select disabled="true" [(ngModel)]="perPage">
+                        <option value="5" selected>5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                    </select>
+                </div>
+                <div class="paginator-page">
+                    <a [ngClass]="(activePage == 1) ? 'disabled' : ''"
+                        (click)="getPreviousPage()">&laquo;</a>
+                    <div class="pageno" *ngFor="let i of totalPages">
+                        <a [ngClass]="(activePage == i) ? 'active' : ''"
+                            (click)="getFeedsByPage(i)">{{ i }}</a>
+                    </div>
+                    <a [ngClass]="(activePage == totalPages.length) ? 'disabled' : ''"
+                        (click)="getNextPage()">&raquo;</a>
+                </div>
+            </div>
     </div>
     <div class = "right-container">
     
