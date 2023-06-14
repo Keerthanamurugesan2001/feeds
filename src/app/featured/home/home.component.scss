@@ -14,9 +14,16 @@ z-index: 999;
         .paginator-items {
             display: flex;
             flex-direction: row;
+            align-items: center;
         }
         .paginator-items span {
             font-size: smaller;
+        }
+        .paginator-items select {
+            width: 50px;
+            height: 30px;
+            border-style: unset;
+            border-radius: 5px;
         }
         .paginator-page {
             display: flex;

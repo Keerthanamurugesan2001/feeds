@@ -19,6 +19,9 @@ export class HomeComponent implements OnInit {
   public borderBottom = "border-bottom"
   public is_global = true
   public is_not_global = false
+  public currentUser: BasicUserDetails | null = this.userService.getUserDetails();
+  public posts: PostDetailsDTO[] = [];
+  public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
   public enableReadMore: boolean = false;
   toogleVal: string = 'Read More';
   readMoreIndex: number = -1;
@@ -42,28 +45,13 @@ export class HomeComponent implements OnInit {
     }, 300);
   }
 
-  // public user = {
-  //   username: 'keerthu',
-  //   email: 'keerthuofficial2001@gmail.com',
-  //   password: 'keerthu2001',
-  //   created_at: '2022-01-09',
-  //   updated_at: '2022-01-09',
-  // }
-
-  public currentUser: BasicUserDetails | null = this.userService.getUserDetails();
-   
-  public posts: PostDetailsDTO[] = [];
-  public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
-
   yourfeeds(){
-    console.log(this.perPage);
-    
     this.is_not_global = true
     this.is_global = false
     this.posts = [];
     let localPageInfo: Page = {
       userId: this.currentUser?.userId,
-      take: this.perPage,
+      take: parseInt(this.perPage as unknown as string),
       page: 1,
     };
     this.userContentService.getUserLocalContent(localPageInfo).subscribe(
@@ -106,6 +94,7 @@ export class HomeComponent implements OnInit {
       );
     });
   }
+
   globalfeeds(){
     this.is_global = true
     this.is_not_global = false
@@ -130,7 +119,6 @@ export class HomeComponent implements OnInit {
   get comment() {
     return this.commentForm.get('comment');
   }
-
 
   addComment(i: number): void {
     this.commentIndex = i;
@@ -164,30 +152,23 @@ export class HomeComponent implements OnInit {
     );
   }
 
-
-
-
   getNextPage(): void {
-    this.posts = [];
     this.activePage++;
     this.getFeedsByPage(this.activePage);
   }
 
-
-
-
   getPreviousPage(): void {
-    this.posts = [];
     this.activePage--;
     this.getFeedsByPage(this.activePage);
   }
 
-
   getFeedsByPage(pageNo: number): void {
+    this.posts = [];
+    this.activePage = pageNo;
     let pageInfo: Page = {
       userId: this.currentUser?.userId,
-      take: this.perPage,
-      page: pageNo,
+      take: parseInt(this.perPage as unknown as string),
+      page: this.activePage,
     };
     if(this.is_global == true) {
       this.userContentService.getUserGlobalContent(pageInfo).subscribe(
@@ -270,18 +251,26 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
-
+  changePerPage(): void {
+    let page: number = this.activePage;
+    if(this.is_global) {
+      this.initPosts();
+    }
+    else {
+      this.yourfeeds();
+    }
+    this.getFeedsByPage(page);
+  }
 
   initPosts(): void {
     this.posts = [];
     let pageInfo: Page = {
-        take: this.perPage,
+        take: parseInt(this.perPage as unknown as string),
         page: 1,
     };
     this.userContentService.getUserGlobalContent(pageInfo).subscribe(
       (response: any) => {
-        this.totalPages = Array(Math.ceil(response.count / 5)).fill(0).map((x, i) => (i + 1));
+        this.totalPages = Array(Math.ceil(response.count / this.perPage)).fill(0).map((x, i) => (i + 1));
         this.activePage = 1;
        response.data.forEach((ud : any) => {
          let userDetails: PostDetailsDTO = {

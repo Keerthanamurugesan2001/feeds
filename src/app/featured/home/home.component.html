@@ -58,11 +58,11 @@
             </div>
             <div class="paginator">
                 <div class="paginator-items">
-                    <span>Items Per Page</span>
-                    <select disabled="true" [(ngModel)]="perPage">
-                        <option value="5" selected>5</option>
-                        <option value="10">10</option>
-                        <option value="15">15</option>
+                    <span>Items Per Page : &nbsp;</span>
+                    <select [(ngModel)]="perPage" (change)="changePerPage()">
+                        <option value=5 selected>5</option>
+                        <option value=10>10</option>
+                        <option value=15>15</option>
                     </select>
                 </div>
                 <div class="paginator-page">
