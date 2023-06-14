@@ -20,6 +20,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './featured/login/login.component';
 import { SpinnerComponent } from './core/layout/spinner/spinner.component';
+import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 
 
 @NgModule({
@@ -35,7 +36,8 @@ import { SpinnerComponent } from './core/layout/spinner/spinner.component';
     HomeComponent,
     SettingsComponent,
     LoginComponent,
-    SpinnerComponent
+    SpinnerComponent,
+    DateAgoPipe
   ],
   imports: [
     BrowserModule,
