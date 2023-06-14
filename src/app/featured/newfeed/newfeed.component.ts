@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserDetails } from 'src/app/core/models/UserDetails';
 import { UserContentService } from 'src/app/core/services/api/user-content.service';
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 
 @Component({
   selector: 'app-newfeed',
@@ -64,11 +65,11 @@ export class NewfeedComponent {
     }
   }
 
-  deleteChip(i: number) {
+  deleteChip(i: number): void {
     this.chips.splice(i, 1);
   }
 
-  postContent(): void {
+  postUserContent(): void {
     let userDetails: UserDetails = {
       userId: 1,
       body: this.form.value.content as string,

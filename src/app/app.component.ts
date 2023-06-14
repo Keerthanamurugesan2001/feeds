@@ -1,5 +1,7 @@
-import { AfterContentChecked, Component } from '@angular/core';
+import { AfterContentChecked, AfterViewChecked, AfterViewInit, Component, HostBinding, HostListener, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoaderService } from './core/services/loader/loader.service';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +11,11 @@ import { Router } from '@angular/router';
 export class AppComponent implements AfterContentChecked {
   
   currentTab: string = '';
-  constructor(private router: Router) {}
+
+  isLoading: Subject<boolean> = this.loaderService.loader;
+  isNotLoading: Subject<boolean> = this.loaderService.not_loader;
+
+  constructor(private router: Router, private loaderService: LoaderService) {}
 
   ngAfterContentChecked(): void {
     if(this.router.url.indexOf('home') != -1) this.currentTab = 'home';

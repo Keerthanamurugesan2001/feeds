@@ -1,11 +1,12 @@
 .newfeed-container {
+    z-index: 999;
     position: relative;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     width: fit-content;
-    left: 22.5%;
+
     .form-container {
         display: flex;
         flex-direction: column;
@@ -177,16 +178,23 @@
     }
 }
 
-@media all and (max-width: 1034px) {
+@media all and (max-width: 900px) {
     .newfeed-container {
-        position: relative;
-        left: 11%;
+        width: 750px;
+        .form-container {
+            padding: 20px;
+            gap: 15px;
+        }
     }
 }
 
-@media all and (max-width: 920px) {
+@media all and (max-width: 800px) {
     .newfeed-container {
-        position: relative;
-        left: 6%;
+        .form-container {
+            .field-container {
+                display: contents;
+            }
+        }
     }
 }
+

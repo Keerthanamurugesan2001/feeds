@@ -1,10 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { CommentDetails } from 'src/app/core/models/CommentDetails';
 import { UserDetailsDTO } from 'src/app/core/models/UserDetailsDTO';
 import { UserCommentService } from 'src/app/core/services/api/user-comment.service';
 import { UserContentService } from 'src/app/core/services/api/user-content.service';
+import { LoaderService } from 'src/app/core/services/loader/loader.service';
 
 @Component({
   selector: 'app-home',
@@ -25,10 +25,14 @@ export class HomeComponent implements OnInit {
   });
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
-    private userCommentService: UserCommentService) {}
+    private userCommentService: UserCommentService, private loaderService: LoaderService) {}
 
   ngOnInit(): void {
-    this.initPosts();
+    this.loaderService.show();
+    this.initPosts()
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 300);
   }
 
   public user = {
@@ -61,6 +65,7 @@ export class HomeComponent implements OnInit {
       this.toogleVal = 'Read More'
     }
   }
+
   tags_search(): void{
 
   }
@@ -93,7 +98,11 @@ export class HomeComponent implements OnInit {
       (response) => {
         console.log(response);
         this.commentIndex = -1;
+        this.loaderService.show();
         this.initPosts();
+        setTimeout(() => {
+          this.loaderService.hide();
+        }, 300);
       }
     );
   }

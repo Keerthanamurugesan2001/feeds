@@ -16,9 +16,12 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './featured/home/home.component';
 import { SettingsComponent } from './featured/settings/settings.component';
 import { MatChipsModule} from '@angular/material/chips';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './featured/login/login.component';
+import { SpinnerComponent } from './core/layout/spinner/spinner.component';
+import { LoaderInterceptor } from './core/interceptor/loader.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -32,7 +35,8 @@ import { LoginComponent } from './featured/login/login.component';
     FieldDirective,
     HomeComponent,
     SettingsComponent,
-    LoginComponent
+    LoginComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -47,7 +51,11 @@ import { LoginComponent } from './featured/login/login.component';
     HttpClientModule,
     MatIconModule,
   ],
-  providers: [],
+  providers: [
+    // {
+    //   provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true
+    // }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

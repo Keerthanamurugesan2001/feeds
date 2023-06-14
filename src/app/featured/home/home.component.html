@@ -25,8 +25,11 @@
 
                         <div class="feed-comment" *ngFor="let comment of post.comments;let i = index">
                             <div class="feed-comment-body"> 
-                            <span class="feed-comment-body-line">------</span>
-                            <div class="feed-comment-body-content"> {{ comment.content }}</div></div>
+                                <span class="feed-comment-body-line">------</span>
+                                <div class="feed-comment-body-content">
+                                    {{ comment.content }}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="comment-btn-container" *ngIf="commentIndex != i">

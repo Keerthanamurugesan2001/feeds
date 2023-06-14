@@ -1,4 +1,5 @@
 .container {
+z-index: 999;
  display: flex;
  width: 80%;
  margin: auto;
@@ -59,15 +60,15 @@
                     padding: 0 5px 5px 5px;
                     display: block;
                 }
-                .feed-comment-body-content { 
+                .feed-comment-body-content {
                     width: 90%;
-                                display: flex;
-                                align-items: center;
-                                font-size: 12px;
-                                overflow: hidden;
-                                word-break: break-all;
-                                padding: 10px;
-                                border: 1px solid rgb(255 255 255 / 20%);
+                    display: flex;
+                    align-items: center;
+                    font-size: 12px;
+                    overflow: hidden;
+                    word-break: break-all;
+                    padding: 10px;
+                    border: 1px solid rgb(255 255 255 / 20%);
                 }
             }
         }

@@ -14,6 +14,8 @@
 .footer {
   position: fixed;
   width: 100%;
+  z-index: 99999;
+  position: sticky;
   background: #4CAF50;
   height: 1px;
   left: 0;
