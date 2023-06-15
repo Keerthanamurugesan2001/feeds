@@ -37,3 +37,9 @@
 //     position: fixed;
 //   }
 // }
+
+@media all and (max-width: 700px) {
+  .footer {
+    right: 0;
+  }
+}

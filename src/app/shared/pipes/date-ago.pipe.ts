@@ -8,6 +8,7 @@ export class DateAgoPipe implements PipeTransform {
   transform(value: any): any {
     if(value) {
       const diff = Math.floor((+new Date() - +new Date(value)) / 1000);
+      if(diff == 0) return 'just now';
       const intervals: any = {
         'year': 31536000,
         'month': 2592000,

@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
   }
 
   yourfeeds(){
+    this.loaderService.show();
     this.is_not_global = true
     this.is_global = false
     this.posts = [];
@@ -93,6 +94,9 @@ export class HomeComponent implements OnInit {
        }  
       );
     });
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 400);
   }
 
   globalfeeds(){
@@ -144,10 +148,11 @@ export class HomeComponent implements OnInit {
         console.log(response);
         this.commentIndex = -1;
         this.loaderService.show();
-        this.initPosts();
+        if(this.is_global) this.initPosts();
+        else this.yourfeeds();
         setTimeout(() => {
           this.loaderService.hide();
-        }, 300);
+        }, 500);
       }
     );
   }
@@ -163,6 +168,7 @@ export class HomeComponent implements OnInit {
   }
 
   getFeedsByPage(pageNo: number): void {
+    this.loaderService.show();
     this.posts = [];
     this.activePage = pageNo;
     let pageInfo: Page = {
@@ -249,6 +255,9 @@ export class HomeComponent implements OnInit {
         );
       });
     }
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 500);
   }
 
   changePerPage(): void {
@@ -263,6 +272,7 @@ export class HomeComponent implements OnInit {
   }
 
   initPosts(): void {
+    this.loaderService.show();
     this.posts = [];
     let pageInfo: Page = {
         take: parseInt(this.perPage as unknown as string),
@@ -307,7 +317,9 @@ export class HomeComponent implements OnInit {
        }  
       );
     });
-
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 500);
   }
 
 }

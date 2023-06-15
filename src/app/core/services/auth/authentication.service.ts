@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { UserService } from '../api/user.service';
-import {Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate } from '@angular/router';
+import {Router, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -8,7 +8,8 @@ import { Observable } from 'rxjs';
 })
 export class AuthenticationService implements CanActivate{
 
-  constructor(private authService:  UserService, private router: Router) {}
+  constructor(private authService:  UserService, private router: Router,
+    private act: ActivatedRoute) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -16,8 +17,9 @@ export class AuthenticationService implements CanActivate{
     if (this.authService.getToken()) {
       return true;
     } else {
-      // Redirect to the sign-in page
-      return this.router.createUrlTree(['/signin']);
+      // Redirect to the sign-in page   
+      this.router.navigate(['signin']);
+      return false;
     }
   }
 

@@ -54,7 +54,12 @@
 
 @media all and (max-width: 1034px) {
     .header {
-        position: relative;
+        position: sticky;
         right: 0%;
+    }
+}
+@media all and (max-width: 700px) {
+    .header {
+        right: 0;
     }
 }
