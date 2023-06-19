@@ -12,9 +12,6 @@ export class AppComponent implements AfterContentChecked {
   
   currentTab: string = '';
 
-  isLoading: Subject<boolean> = this.loaderService.loader;
-  isNotLoading: Subject<boolean> = this.loaderService.not_loader;
-
   constructor(private router: Router, private loaderService: LoaderService) {}
 
   ngAfterContentChecked(): void {

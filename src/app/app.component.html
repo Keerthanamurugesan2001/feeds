@@ -1,6 +1,5 @@
-<app-spinner *ngIf="isLoading | async"></app-spinner>
-<app-header *ngIf="isNotLoading | async" #header [currentTab]="currentTab" ></app-header>
+<app-header [currentTab]="currentTab" ></app-header>
 <div [ngClass]="(currentTab === 'newfeed') ? 'container' : ''">
     <router-outlet class="container" #body></router-outlet>
 </div>
-<app-footer *ngIf="isNotLoading | async" #footer></app-footer>
+<app-footer></app-footer>

@@ -6,6 +6,7 @@
     align-items: center;
     width: fit-content;
     .form-container {
+        background-color: #3e3e3e;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -16,7 +17,7 @@
         padding: 50px;
         border: 1px solid #3e3e3e;
         border-radius: 20px;
-        box-shadow: #4CAF50 2px 2px 3px 4px;
+        box-shadow: #4CAF50 0px 0px 5px 5px;
         
         .field-container {
             display: flex;
@@ -30,7 +31,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: #4CAF50 2px 2px 2px 2px;
+                box-shadow: #4CAF50 0px 0px 3px 3px;
             }
             .title-input-error {
                 width: 500px;
@@ -39,7 +40,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: red 2px 2px 2px 2px;
+                box-shadow: red 0px 0px 3px 3px;
             }
             .title-input-touch {
                 width: 500px;
@@ -48,7 +49,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: white 2px 2px 2px 2px;
+                box-shadow: white 0px 0px 3px 3px;
             }
             .tags-input-success {
                 width: 500px;
@@ -57,7 +58,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: red 2px 2px 2px 2px;
+                box-shadow: #4CAF50 0px 0px 3px 3px;
             }
             .tags-input-error {
                 width: 500px;
@@ -66,7 +67,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: #4CAF50 2px 2px 2px 2px;
+                box-shadow: red 0px 0px 3px 3px;
             }
             .tags-input-touch {
                 width: 500px;
@@ -75,7 +76,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: white 2px 2px 2px 2px;
+                box-shadow: white 0px 0px 3px 3px;
             }
             .content-textarea-success {
                 resize: none;
@@ -84,7 +85,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: #4CAF50 2px 2px 2px 2px;
+                box-shadow: #4CAF50 0px 0px 3px 3px;
             }
             .content-textarea-error {
                 resize: none;
@@ -93,7 +94,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: red 2px 2px 2px 2px;
+                box-shadow: red 0px 0px 3px 3px;
             }
             .content-textarea-touch {
                 resize: none;
@@ -102,7 +103,7 @@
                 border-style: unset;
                 outline: none;
                 padding: 10px;
-                box-shadow: white 2px 2px 2px 2px;
+                box-shadow: white 0px 0px 3px 3px;
             }
             span {
                 color: red;
@@ -176,20 +177,6 @@
     }
 }
 
-// @media all and (max-width: 1034px) {
-//     .newfeed-container {
-//         position: relative;
-//         left: 11%;
-//     }
-// }
-
-// @media all and (max-width: 920px) {
-//     .newfeed-container {
-//         position: relative;
-//         left: 6%;
-//     }
-// }
-
 @media all and (max-width: 850px) {
     .newfeed-container {
         .form-container {
@@ -206,6 +193,7 @@
         }
     }
 }
+
 @media all and (max-width: 750px) {
     .newfeed-container {
         .form-container {
@@ -222,6 +210,7 @@
         }
     }
 }
+
 @media all and (max-width: 700px) {
     .newfeed-container {
         .form-container {
@@ -271,6 +260,126 @@
             }
             .btn-container {
                 width: 450px;
+                button {
+                    width: 80px;
+                    height: 35px;
+                    font-weight: 500;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 535px) {
+    .newfeed-container {
+        .form-container {
+            width: 350px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 15px;
+            padding-right: 15px;
+            .field-container {
+                width: 400px;
+                .title-input-success {
+                    width: 250px;
+                }
+                .title-input-error {
+                    width: 250px;
+                }
+                .title-input-touch {
+                    width: 250px;
+                }
+                .tags-input-success {
+                    width: 250px;
+                }
+                .tags-input-error {
+                    width: 250px;
+                }
+                .tags-input-touch {
+                    width: 250px;
+                }
+                .content-textarea-success {
+                    width: 250px;
+                }
+                .content-textarea-error {
+                    width: 250px;
+                }
+                .content-textarea-touch {
+                    width: 250px;
+                }
+                .tag-chips {
+                    position: relative;
+                    left: 40px;
+                }
+                .priority-container {
+                    display: flex;
+                    flex-direction: row;
+                    width: 250px;
+                }
+            }
+            .btn-container {
+                width: 400px;
+                button {
+                    width: 80px;
+                    height: 35px;
+                    font-weight: 500;
+                    font-size: 15px;
+                }
+            }
+        }
+    }
+}
+
+@media all and (max-width: 420px) {
+    .newfeed-container {
+        .form-container {
+            width: 300px;
+            padding-top: 30px;
+            padding-bottom: 30px;
+            padding-left: 15px;
+            padding-right: 15px;
+            .field-container {
+                width: 300px;
+                .title-input-success {
+                    width: 250px;
+                }
+                .title-input-error {
+                    width: 250px;
+                }
+                .title-input-touch {
+                    width: 250px;
+                }
+                .tags-input-success {
+                    width: 250px;
+                }
+                .tags-input-error {
+                    width: 250px;
+                }
+                .tags-input-touch {
+                    width: 250px;
+                }
+                .content-textarea-success {
+                    width: 250px;
+                }
+                .content-textarea-error {
+                    width: 250px;
+                }
+                .content-textarea-touch {
+                    width: 250px;
+                }
+                .tag-chips {
+                    position: relative;
+                    left: 40px;
+                }
+                .priority-container {
+                    display: flex;
+                    flex-direction: row;
+                    width: 250px;
+                }
+            }
+            .btn-container {
+                width: 300px;
                 button {
                     width: 80px;
                     height: 35px;

@@ -1,30 +1,57 @@
-.loader-container {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #3e3e3e;
-    z-index: 9999;
-    .spinner {
-        display: inline-block;
-        width: 50px;
-        height: 50px;
-        border: 7px solid rgba(255,255,255,.2);
-        border-radius: 50%;
-        border-top-color: #4CAF50;
-        animation: spin 1s ease-in-out infinite;
-        -webkit-animation: spin 1s ease-in-out infinite;
-    }
+// .loader-container {
+//     //position: fixed;
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     //width: 100%;
+//     //top: 0;
+//     //bottom: 0;
+//     //left: 0;
+//     //right: 0;
+//     //background-color: #3e3e3e;
+//     z-index: 9999;
+//     .spinner {
+//         display: inline-block;
+//         width: 50px;
+//         height: 50px;
+//         border: 7px solid rgba(255,255,255,.2);
+//         border-radius: 50%;
+//         border-top-color: #4CAF50;
+//         animation: spin 1s ease-in-out infinite;
+//         -webkit-animation: spin 1s ease-in-out infinite;
+//     }
           
-    @keyframes spin {
-        to { -webkit-transform: rotate(360deg); }
+//     @keyframes spin {
+//         to { -webkit-transform: rotate(360deg); }
+//     }
+//     @-webkit-keyframes spin {
+//         to { -webkit-transform: rotate(360deg); }
+//     }
+// }
+
+.loader-small {
+    border-radius: 10px;
+    height: 9px;
+    width: 200px;
+    background-image: linear-gradient(to right, #3e3e3e, #4CAF50, white);
+    animation: colorAni 0.2s infinite;
+}
+.loader-big {
+    border-radius: 10px;
+    height: 9px;
+    width: 750px;
+    background-image: linear-gradient(to right, #3e3e3e, #4CAF50, white);
+    animation: colorAni 0.2s infinite;
+}
+
+@keyframes colorAni {
+    0% {
+        background-image: linear-gradient(to right, #3e3e3e, #4CAF50, white);
     }
-    @-webkit-keyframes spin {
-        to { -webkit-transform: rotate(360deg); }
+    50% {
+        background-image: linear-gradient(to right, #4CAF50, white, #3e3e3e);
+    }
+    100% {
+        background-image: linear-gradient(to right, white,  #3e3e3e, #4CAF50);
     }
 }

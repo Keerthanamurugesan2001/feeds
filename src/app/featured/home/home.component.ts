@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, HostListener, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CommentDetails } from 'src/app/core/models/CommentDetails';
 import { UserCommentService } from 'src/app/core/services/api/user-comment.service';
@@ -8,6 +8,7 @@ import { Page } from 'src/app/core/models/Page';
 import { UserService } from 'src/app/core/services/api/user.service';
 import { BasicUserDetails } from 'src/app/core/models/BasicUserDetails';
 import { PostDetailsDTO } from 'src/app/core/models/PostDetailsDTO';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Component({
   selector: 'app-home',
@@ -16,6 +17,8 @@ import { PostDetailsDTO } from 'src/app/core/models/PostDetailsDTO';
 })
 export class HomeComponent implements OnInit {
 
+  isLoading: Subject<boolean> = this.loaderService.loader;
+  isNotLoading: Subject<boolean> = this.loaderService.not_loader;
   public borderBottom = "border-bottom"
   public is_global = true
   public is_not_global = false
@@ -24,96 +27,57 @@ export class HomeComponent implements OnInit {
   public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
   public enableReadMore: boolean = false;
   toogleVal: string = 'Read More';
-  readMoreIndex: number = -1;
   commentIndex: number = -1;
   commentForm = this.fb.group({
     comment: this.fb.control('', [Validators.required]),
   });
-  totalPages: number[] = [];
-  activePage: number = 0;
+  activePage: number = 1;
   perPage: number = 5;
+  commentDisplayIndices: Set<number> = new Set<number>();
+  readMoreIndices: Set<number> = new Set<number>();
+  totalCount: number = -1;
+  isLast: boolean = false;
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
     private userCommentService: UserCommentService, private loaderService: LoaderService,
     private userService: UserService) {}
 
+    @ViewChild('pBody') postBody!: ElementRef;
+
   ngOnInit(): void {
     this.loaderService.show();
-    this.initPosts()
+    this.initPosts(false);
     setTimeout(() => {
       this.loaderService.hide();
-    }, 300);
+    }, 500);
   }
 
-  yourfeeds(){
-    this.loaderService.show();
+  yourfeeds() {
     this.is_not_global = true
     this.is_global = false
+    this.isLast = false;
     this.posts = [];
-    let localPageInfo: Page = {
-      userId: this.currentUser?.userId,
-      take: parseInt(this.perPage as unknown as string),
-      page: 1,
-    };
-    this.userContentService.getUserLocalContent(localPageInfo).subscribe(
-      (response: any) => {
-        this.totalPages = Array(Math.ceil(response.count / this.perPage)).fill(0).map((x, i) => (i + 1));
-        this.activePage = 1;
-       response.data.forEach((ud : any) => {
-         let userDetails: PostDetailsDTO = {
-           id: ud.Id,
-           title: ud.title,
-           body: ud.body,
-           userId: ud.userId,
-           isGlobal: false,
-           isComment: ud.isComment,
-           tag: ud.tag.split(','),
-           createdAt: ud.createdAt,
-           updatedAt: ud.updatedAt,
-         };
-         if(userDetails.isComment) {
-          let comments: CommentDetails[] = [];
-          this.userCommentService.getAllCommentsForPost(ud.Id).subscribe(
-            (res: any) => {
-              res.forEach((cd: any) => {
-                let commentDetails: CommentDetails = {
-                  postUserId: cd.postUserId,
-                  commentUserId: cd.commentUserId,
-                  postId: cd.postId,
-                  content: cd.content,
-                  createdAt: cd.createdAt,
-                  updatedAt: cd.updatedAt,
-                };
-                comments.push(commentDetails);
-              });
-              userDetails.comments = comments;
-            }
-          );
-         }
-         this.posts.push(userDetails);
-       }  
-      );
-    });
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 400);
+    this.totalCount = -1;
+    this.activePage = 1;
+    this.initPosts(false);
   }
 
-  globalfeeds(){
+  globalfeeds() {
     this.is_global = true
     this.is_not_global = false
-    this.initPosts();
+    this.isLast = false;
+    this.posts = [];
+    this.totalCount = -1;
+    this.activePage = 1;
+    this.initPosts(false);
   }
 
-  toggleReadMore(i: number): void {
-    this.enableReadMore = !this.enableReadMore;
-    this.readMoreIndex = i;
-    if(this.enableReadMore == true) {
-      this.toogleVal = 'Read Less'
-    }
-    else {
-      this.toogleVal = 'Read More'
-    }
+  showMoreContent(i: number): void {
+    this.readMoreIndices.add(i);
+  }
+
+  showLessContent(i: number): void {
+    this.readMoreIndices.delete(i);
   }
 
   tags_search(): void{
@@ -134,10 +98,10 @@ export class HomeComponent implements OnInit {
     this.comment?.setValue('');
   }
 
-  postComment(pid: number, cid: number, postId: number | undefined): void {
+  postComment(pid: number, postId: number | undefined, i: number): void {
     let commentDetails: CommentDetails = {
         postUserId: pid,
-        commentUserId: cid,
+        commentUserId: this.currentUser?.userId as number,
         postId: postId as number,
         content: this.commentForm.value.comment as string,
         createdAt: new Date(),
@@ -148,8 +112,9 @@ export class HomeComponent implements OnInit {
         console.log(response);
         this.commentIndex = -1;
         this.loaderService.show();
-        if(this.is_global) this.initPosts();
+        if(this.is_global) this.initPosts(true);
         else this.yourfeeds();
+        this.commentDisplayIndices.add(i);
         setTimeout(() => {
           this.loaderService.hide();
         }, 500);
@@ -157,28 +122,42 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getNextPage(): void {
-    this.activePage++;
-    this.getFeedsByPage(this.activePage);
+  showComments(i: number): void {
+    this.commentDisplayIndices.add(i);
   }
 
-  getPreviousPage(): void {
-    this.activePage--;
-    this.getFeedsByPage(this.activePage);
+  hideComments(i: number): void {
+    this.commentDisplayIndices.delete(i);
   }
 
-  getFeedsByPage(pageNo: number): void {
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    if(this.bottomReached()) {
+      this.activePage++;
+      this.initPosts(false);
+    }
+    return;
+  }
+
+  bottomReached(): boolean {
+    return (window.innerHeight + window.scrollY) >= document.body.offsetHeight;
+  }
+
+  initPosts(isPostComment: boolean): void {
+    if(this.posts.length == this.totalCount) {
+      this.isLast = true;
+      return;
+    }if(isPostComment) this.posts = [];
     this.loaderService.show();
-    this.posts = [];
-    this.activePage = pageNo;
     let pageInfo: Page = {
-      userId: this.currentUser?.userId,
-      take: parseInt(this.perPage as unknown as string),
-      page: this.activePage,
+        userId: this.currentUser?.userId, 
+        take: this.perPage,
+        page: this.activePage,
     };
-    if(this.is_global == true) {
+    if(this.is_global) {
       this.userContentService.getUserGlobalContent(pageInfo).subscribe(
         (response: any) => {
+          this.totalCount = response.count;
          response.data.forEach((ud : any) => {
            let userDetails: PostDetailsDTO = {
              id: ud.Id,
@@ -215,10 +194,10 @@ export class HomeComponent implements OnInit {
         );
       });
     }
-
     else {
       this.userContentService.getUserLocalContent(pageInfo).subscribe(
         (response: any) => {
+          this.totalCount = response.count;
          response.data.forEach((ud : any) => {
            let userDetails: PostDetailsDTO = {
              id: ud.Id,
@@ -255,68 +234,6 @@ export class HomeComponent implements OnInit {
         );
       });
     }
-    setTimeout(() => {
-      this.loaderService.hide();
-    }, 500);
-  }
-
-  changePerPage(): void {
-    let page: number = this.activePage;
-    if(this.is_global) {
-      this.initPosts();
-    }
-    else {
-      this.yourfeeds();
-    }
-    this.getFeedsByPage(page);
-  }
-
-  initPosts(): void {
-    this.loaderService.show();
-    this.posts = [];
-    let pageInfo: Page = {
-        take: parseInt(this.perPage as unknown as string),
-        page: 1,
-    };
-    this.userContentService.getUserGlobalContent(pageInfo).subscribe(
-      (response: any) => {
-        this.totalPages = Array(Math.ceil(response.count / this.perPage)).fill(0).map((x, i) => (i + 1));
-        this.activePage = 1;
-       response.data.forEach((ud : any) => {
-         let userDetails: PostDetailsDTO = {
-           id: ud.Id,
-           title: ud.title,
-           body: ud.body,
-           userId: ud.userId,
-           isGlobal: ud.isGlobal,
-           isComment: ud.isComment,
-           tag: ud.tag.split(','),
-           createdAt: ud.createdAt,
-           updatedAt: ud.updatedAt,
-         };
-         if(userDetails.isComment) {
-          let comments: CommentDetails[] = [];
-          this.userCommentService.getAllCommentsForPost(ud.Id).subscribe(
-            (res: any) => {
-              res.forEach((cd: any) => {
-                let commentDetails: CommentDetails = {
-                  postUserId: cd.postUserId,
-                  commentUserId: cd.commentUserId,
-                  postId: cd.postId,
-                  content: cd.content,
-                  createdAt: cd.createdAt,
-                  updatedAt: cd.updatedAt,
-                };
-                comments.push(commentDetails);
-              });
-              userDetails.comments = comments;
-            }
-          );
-         }
-         this.posts.push(userDetails);
-       }  
-      );
-    });
     setTimeout(() => {
       this.loaderService.hide();
     }, 500);
