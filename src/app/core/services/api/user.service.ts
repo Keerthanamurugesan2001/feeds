@@ -3,8 +3,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User, UserCredential, UserToken } from '../../models/User';
 import { Observable } from 'rxjs';
 import { BasicUserDetails } from '../../models/BasicUserDetails';
+import { successMsg } from '../../models/SuccessAndErrorMsg';
 
-const baseURL: string = 'https://8de4-14-98-32-198.ngrok-free.app/api/v1/';
+const baseURL: string = 'http://localhost:3000/api/v1/';
 
 @Injectable({
   providedIn: 'root'
@@ -36,7 +37,7 @@ export class UserService {
   }
 
   create_user(details:User){
-    return this.http.post(baseURL + 'auth/register', details)
+    return this.http.post<successMsg>(baseURL + 'auth/register', details)
   }
 
   user_login(details:UserCredential): Observable<UserToken>{

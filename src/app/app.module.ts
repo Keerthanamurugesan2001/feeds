@@ -21,6 +21,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './featured/login/login.component';
 import { SpinnerComponent } from './core/layout/spinner/spinner.component';
 import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
+import { FormComponent } from './shared/custom-components/form/form.component';
 
 
 @NgModule({
@@ -37,7 +38,8 @@ import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
     SettingsComponent,
     LoginComponent,
     SpinnerComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    FormComponent
   ],
   imports: [
     BrowserModule,

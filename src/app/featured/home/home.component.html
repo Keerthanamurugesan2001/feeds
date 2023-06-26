@@ -1,7 +1,7 @@
 <div class="container" >
     <div class = "left-container">
         <div class="feeds-header" [ngClass]="{'border-bottom': true}">
-            <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': is_not_global}">Your feed</span>
+            <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': !is_global}">Your feed</span>
             <span class="head" (click)="globalfeeds()" [ngClass]="{'border-bottom-tabs': is_global}">Global feed</span>
         </div>
 

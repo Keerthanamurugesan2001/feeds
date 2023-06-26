@@ -1,4 +1,5 @@
 export interface User{
+  "userId"?: number;
   "userName": string,
   "email": string,
   "password": string,
@@ -13,5 +14,6 @@ export interface UserCredential{
 
 export interface UserToken{
   "access_token"?: string,
-  "message"?: string
+  "message"?: string,
+  "user": User
 }
