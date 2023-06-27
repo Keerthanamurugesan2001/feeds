@@ -19,7 +19,7 @@ export class FormComponent {
     this.dynamicFormGroup = this.fb.group({});
     
   } 
-  ngOnInit(){
+  ngOnInit(): void{
     let formControls: any = {}
     for (const field of this.formModel){
       if (field.type == 'password'){
@@ -31,23 +31,19 @@ export class FormComponent {
       }
       else if (field.type != 'button'){
         formControls[field.formControlName] = new FormControl('', Validators.required)
-      }
-      
-            
+      }      
     }
     this.dynamicFormGroup = this.fb.group(formControls)
   }
 
-  save(){
+  save(): void{
     if (this.dynamicFormGroup.invalid) {
-      // Handle form validation errors
       return;
     }
-
     this.dataEvent.emit(this.dynamicFormGroup);
   }
   
-  toggle_visiblity(){
+  toggle_visiblity(): void{
     this.isVisbile = !this.isVisbile
   }
 }

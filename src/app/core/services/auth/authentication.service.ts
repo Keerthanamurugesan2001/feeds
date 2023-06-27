@@ -16,9 +16,8 @@ export class AuthenticationService implements CanActivate{
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if (this.authService.getToken()) {
       return true;
-    } else {
-      // Redirect to the sign-in page   
-      this.router.navigate(['signin']);
+    } else { 
+      this.router.navigate(['login']);
       return false;
     }
   }

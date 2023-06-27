@@ -22,6 +22,7 @@ import { LoginComponent } from './featured/login/login.component';
 import { SpinnerComponent } from './core/layout/spinner/spinner.component';
 import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 import { FormComponent } from './shared/custom-components/form/form.component';
+import { BaseUrlInterceptor } from './interceptor/api.interceptor';
 
 
 @NgModule({
@@ -55,9 +56,11 @@ import { FormComponent } from './shared/custom-components/form/form.component';
     MatIconModule,
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })
