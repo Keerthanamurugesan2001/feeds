@@ -23,7 +23,8 @@ import { SpinnerComponent } from './core/layout/spinner/spinner.component';
 import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
 import { FormComponent } from './shared/custom-components/form/form.component';
 import { BaseUrlInterceptor } from './interceptor/api.interceptor';
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 
 @NgModule({
   declarations: [
@@ -54,6 +55,8 @@ import { BaseUrlInterceptor } from './interceptor/api.interceptor';
     MatChipsModule,
     HttpClientModule,
     MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [
     {

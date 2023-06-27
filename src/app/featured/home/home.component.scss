@@ -1,8 +1,33 @@
-.container {
-z-index: 999;
- display: flex;
- width: 80%;
- margin: auto;
+.feed-page{
+    .customize{
+        margin-bottom: 15px;
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+        width: 80%;
+        margin: auto;
+        margin-bottom: 15px;
+        button {
+            cursor: pointer;
+            width: 100px;
+            padding: 10px;
+            background-color: #000000;
+            color: #FFFFFF;
+            border-style: none;
+        }
+        button:active {
+            background-color: #4CAF50;
+        }
+        .small, .medium, .large{
+            background-color: #4CAF50;
+        }
+    }
+    .container {
+        z-index: 999;
+        display: flex;
+        width: 80%;
+        margin: auto;
+    }
 }
 .left-container{
     width: 80%;
@@ -74,6 +99,7 @@ z-index: 999;
             pointer-events: none;
         }
     }
+    
 }
 .right-container{
     width: 20%;
@@ -93,10 +119,12 @@ z-index: 999;
     box-shadow: #4CAF50 0px 0px 5px 5px;
     padding: 20px;
     margin: 30px;
+    width: 800px;
+    height: 300px;
     .feeds-container {
         display: flex;
         flex-direction: column;
-        gap: 20px;
+        gap: 10px;
         .feed-read-more {
             display: flex;
             justify-content: left;
@@ -289,10 +317,12 @@ z-index: 999;
 }
 .feed-foot-right{
     display: flex;
-    span {
+    gap: 5px;
+    flex-wrap: wrap;
+    .tags {
         align-items: baseline;
         padding: 8px 20px;
-        margin: 10px;
+        // margin: 10px;
         border: 1px solid rgb(90, 94, 90);
         border-radius: 35px;
     }
@@ -313,7 +343,7 @@ z-index: 999;
         color: whitesmoke;
     }
     .container-feeds{
-        position: fixed;
+        // position: fixed;
         background-color: rgb(86 211 136);
         padding: 20px;
         border-radius: 5px;
@@ -353,4 +383,94 @@ a{
     padding: 3px;
     transform: rotate(-135deg);
     -webkit-transform: rotate(-135deg);
+}
+
+
+.small-feeds{
+    width: 600px !important;
+    height: auto !important;
+    .feeds-container{
+        width: 600px !important;
+        .feed-head, .feed-body-more, .feed-body, .feed-comments, .feed-foot{
+            font-size: 14px !important;
+            width: 600px !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+        .feed-body-more{
+            flex-direction: column !important;
+        }
+    }
+}
+.medium-feeds{
+    width: 800px !important;
+    height: auto !important;
+    .feeds-container{
+        width: 800px !important;
+        .feed-head, .feed-body-more, .feed-body, .feed-comments, .feed-foot{
+            font-size: 18px !important;
+            width: 800px !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+        .feed-body-more{
+            flex-direction: column !important;
+        }
+    }
+}
+.large-feeds{
+    width: 100% !important;
+    height: auto !important;
+    .feeds-container{
+        width: 100% !important;
+        .feed-head, .feed-body-more, .feed-body, .feed-comments, .feed-foot{
+            font-size: 24px !important;
+            width: 800px !important;
+            display: flex !important;
+            flex-wrap: wrap !important;
+        }
+        .feed-body-more{
+            flex-direction: column !important;
+        }
+    }
+}
+
+.large-container{
+    display: flex;
+    flex-direction: column-reverse;
+    width: 80%;
+    margin: auto;
+    .left-container{
+        width: 100% !important;
+        .feeds{
+            width: 90% !important;
+        }
+    }
+    .right-container {
+        margin-bottom: 40px;
+        padding: 10px !important;
+        width: 40% !important;
+        height: auto !important;
+        a{
+            cursor: pointer;
+            text-decoration: none;
+            margin: 0px 5px;
+            padding: 5px;
+            border: 1px solid black;
+            border-radius: 35px;
+            color: whitesmoke;
+        }
+        .container-feeds{
+            width: 100% !important;
+            height: auto !important;
+            background-color: rgb(86 211 136);
+            padding: 10px 15px 20px 20px !important;
+            border-radius: 5px;
+            .tags{
+                margin: 8px 0px;
+                display: inline-block;
+                cursor: pointer;
+            }
+        }
+    }
 }

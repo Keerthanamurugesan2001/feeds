@@ -36,6 +36,7 @@ export class HomeComponent implements OnInit {
   readMoreIndices: Set<number> = new Set<number>();
   totalCount: number = -1;
   isLast: boolean = false;
+  selectedCustomizeButton!: string;
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
     private userCommentService: UserCommentService, private loaderService: LoaderService,
@@ -44,6 +45,7 @@ export class HomeComponent implements OnInit {
     @ViewChild('pBody') postBody!: ElementRef;
 
   ngOnInit(): void {
+    this.selectedCustomizeButton = 'medium';
     this.loaderService.show();
     this.initPosts(false);
     setTimeout(() => {
@@ -237,4 +239,27 @@ export class HomeComponent implements OnInit {
     }, 500);
   }
 
+  public customizeOnClick(value: string): void {
+    this.selectedCustomizeButton = value;
+  }
+
+  public getStyle(){
+    return {
+      'background-color': 'red'
+    }
+  }
+
+  public getClassForFeeds(){
+    console.log(this.posts)
+    if (this.selectedCustomizeButton === 'small'){
+      return 'small-feeds'
+    }
+    else if (this.selectedCustomizeButton === 'medium'){
+      return 'medium-feeds'
+    }
+    else if (this.selectedCustomizeButton === 'large'){
+      return 'large-feeds'
+    }
+    return 'medium-feeds'
+  }
 }
