@@ -8,7 +8,7 @@
     height: 15px;
     margin-bottom: 25px;
     padding: 20px;
-    background-color: black;
+    // background-color: var(--color);
     font-weight: bolder;
     .nav-bar {
         display: flex;
@@ -29,8 +29,8 @@
             }
             .btn-nav {
                 height: 50px;
-                color: white;
-                background-color: black;
+                // color: white;
+                // background-color: var(--color);
                 border-style: unset;
                 font-weight: lighter;
                 font-size: medium;
@@ -38,8 +38,8 @@
             }
             .btn-nav-current {
                 height: 50px;
-                color: white;
-                background-color: black;
+                // color: white;
+                // background-color: var(--color);
                 border-style: unset;
                 font-weight: lighter;
                 font-size: medium;
@@ -72,8 +72,10 @@
     width: 122.7656px !important;
     top: 39.5px !important;
     left: 1502.61px !important;
+    margin: auto;
 }
 
-::ng-deep .maticon{
-    width: 30px !important;
+::ng-deep .mat-mdc-select{
+    width: 0 !important;
+    margin-left: 5px; 
 }

@@ -1,21 +1,21 @@
-<div class="header">
+<div class="header" [ngStyle]="getStyle()">
     <ul class="nav-bar">
         <div #home class="nav-tab">
-            <button [ngClass]="(currentTab === 'home') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/home">Home</button>
+            <button [ngClass]="(currentTab === 'home') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/home" [ngStyle]="getStyle()">Home</button>
         </div>
         <div class="nav-tab"> 
             <mat-icon class="maticon"> format_color_fill</mat-icon>
             <mat-select>
-                <mat-option *ngFor="let color of colors" [value]="color.value">
+                <mat-option *ngFor="let color of colors" [value]="color.value" (click)="colorChange(color.value)">
                 {{color.viewValue}}
                 </mat-option>
             </mat-select>
         </div>
         <div #new class="nav-tab">
-            <button [ngClass]="(currentTab === 'newfeed') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/newfeed">New Feed</button>
+            <button [ngClass]="(currentTab === 'newfeed') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/newfeed" [ngStyle]="getStyle()">New Feed</button>
         </div>
         <div #setting class="nav-tab">
-            <button [ngClass]="(currentTab === 'settings') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/settings">Settings</button>
+            <button [ngClass]="(currentTab === 'settings') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/settings" [ngStyle]="getStyle()">Settings</button>
         </div>
     </ul>
 </div>

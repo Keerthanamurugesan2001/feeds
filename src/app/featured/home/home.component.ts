@@ -9,6 +9,7 @@ import { UserService } from 'src/app/core/services/api/user.service';
 import { BasicUserDetails } from 'src/app/core/models/BasicUserDetails';
 import { PostDetailsDTO } from 'src/app/core/models/PostDetailsDTO';
 import { Subject } from 'rxjs/internal/Subject';
+import { ThemeServiceService } from 'src/app/core/services/theme/theme-service.service';
 
 @Component({
   selector: 'app-home',
@@ -25,6 +26,8 @@ export class HomeComponent implements OnInit {
   public posts: PostDetailsDTO[] = [];
   public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
   public enableReadMore: boolean = false;
+  public color!: string;
+  public backgroundColor!: string;
   toogleVal: string = 'Read More';
   commentIndex: number = -1;
   commentForm = this.fb.group({
@@ -37,10 +40,11 @@ export class HomeComponent implements OnInit {
   totalCount: number = -1;
   isLast: boolean = false;
   selectedCustomizeButton!: string;
+is_not_global: any;
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
     private userCommentService: UserCommentService, private loaderService: LoaderService,
-    private userService: UserService) {}
+    private userService: UserService, private themeService: ThemeServiceService) {}
 
     @ViewChild('pBody') postBody!: ElementRef;
 
@@ -51,6 +55,11 @@ export class HomeComponent implements OnInit {
     setTimeout(() => {
       this.loaderService.hide();
     }, 500);
+
+    this.themeService.selectedColor$.subscribe((value: string) => {
+      // Run your function here
+      this.getColor(value);
+    });
   }
   
   yourfeeds(): void{
@@ -243,14 +252,7 @@ export class HomeComponent implements OnInit {
     this.selectedCustomizeButton = value;
   }
 
-  public getStyle(){
-    return {
-      'background-color': 'red'
-    }
-  }
-
   public getClassForFeeds(){
-    console.log(this.posts)
     if (this.selectedCustomizeButton === 'small'){
       return 'small-feeds'
     }
@@ -261,5 +263,29 @@ export class HomeComponent implements OnInit {
       return 'large-feeds'
     }
     return 'medium-feeds'
+  }
+
+  private getColor(value: any){
+    console.log('hey', value)
+    // if (this.themeService.selectedTheme === 'red_and_white'){
+    //   this.backgroundColor = 'white';
+    //   this.color = 'black';
+    // }
+    // else if (this.themeService.selectedTheme === 'blue_and_green'){
+    //   this.backgroundColor = '#5a5aff';
+    //   this.color = 'white';
+    // }
+    // else if (this.themeService.selectedTheme === 'black_and_white'){
+    //   this.backgroundColor = 'black';
+    //   this.color = 'white';
+    // }
+  }
+
+  public getStyle(){
+    // this.getColor()
+    return {
+      'background-color': this.backgroundColor,
+      'color': this.color
+    }
   }
 }

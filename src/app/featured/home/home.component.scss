@@ -15,11 +15,8 @@
             color: #FFFFFF;
             border-style: none;
         }
-        button:active {
-            background-color: #4CAF50;
-        }
         .small, .medium, .large{
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
         }
     }
     .container {

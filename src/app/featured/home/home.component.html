@@ -1,13 +1,13 @@
 <div class="feed-page">
     <div class="customize" >
-        <button [ngClass]="{'small': selectedCustomizeButton === 'small'}" (click)="customizeOnClick('small')">Small</button>
-        <button [ngClass]="{'medium': selectedCustomizeButton === 'medium'}" (click)="customizeOnClick('medium')">Medium</button>
-        <button [ngClass]="{'large': selectedCustomizeButton === 'large'}" (click)="customizeOnClick('large')">Large</button>
+        <button [ngStyle]="{'--primary-color': backgroundColor}" [ngClass]="{'small': selectedCustomizeButton === 'small'}" (click)="customizeOnClick('small')">Small</button>
+        <button [ngStyle]="{'--primary-color': backgroundColor}" [ngClass]="{'medium': selectedCustomizeButton === 'medium'}" (click)="customizeOnClick('medium')">Medium</button>
+        <button [ngStyle]="{'--primary-color': backgroundColor}" [ngClass]="{'large': selectedCustomizeButton === 'large'}" (click)="customizeOnClick('large')">Large</button>
     </div>
     <div [ngClass]="selectedCustomizeButton === 'large' ? 'large-container' : 'container'">
         <div class = "left-container">
             <div class="feeds-header" [ngClass]="{'border-bottom': true}">
-                <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': is_not_global}">Your feed</span>
+                <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': !is_global}">Your feed</span>
                 <span class="head" (click)="globalfeeds()" [ngClass]="{'border-bottom-tabs': is_global}">Global feed</span>
             </div>
     
