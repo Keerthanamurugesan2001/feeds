@@ -1,104 +1,111 @@
-<div class="container" >
-    <div class = "left-container">
-        <div class="feeds-header" [ngClass]="{'border-bottom': true}">
-            <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': is_not_global}">Your feed</span>
-            <span class="head" (click)="globalfeeds()" [ngClass]="{'border-bottom-tabs': is_global}">Global feed</span>
-        </div>
-
-        <div *ngFor="let post of posts; let i=index"  class="feeds">
-            <div class="feeds-container" *ngIf="is_global == post.isGlobal">
-                <div class="feed-head">
-                    <div class="user-img">
-                    <img src="/assets/img/smile.jpg" alt="profile-image">
+<div class="feed-page">
+    <div class="customize" >
+        <button [ngClass]="{'small': selectedCustomizeButton === 'small'}" (click)="customizeOnClick('small')">Small</button>
+        <button [ngClass]="{'medium': selectedCustomizeButton === 'medium'}" (click)="customizeOnClick('medium')">Medium</button>
+        <button [ngClass]="{'large': selectedCustomizeButton === 'large'}" (click)="customizeOnClick('large')">Large</button>
+    </div>
+    <div [ngClass]="selectedCustomizeButton === 'large' ? 'large-container' : 'container'">
+        <div class = "left-container">
+            <div class="feeds-header" [ngClass]="{'border-bottom': true}">
+                <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': is_not_global}">Your feed</span>
+                <span class="head" (click)="globalfeeds()" [ngClass]="{'border-bottom-tabs': is_global}">Global feed</span>
+            </div>
+    
+            <div *ngFor="let post of posts; let i=index"  class="feeds" [ngClass]="getClassForFeeds()">
+                <div class="feeds-container" *ngIf="is_global == post.isGlobal">
+                    <div class="feed-head">
+                        <div class="user-img">
+                        <img src="/assets/img/smile.jpg" alt="profile-image">
+                        </div>
+                        <div class="user-detail">
+                            <summary class="username">{{ currentUser?.userName }}</summary>
+                            <summary class="history">{{ post.createdAt | dateAgo }}</summary>
+                        </div>
                     </div>
-                    <div class="user-detail">
-                        <summary class="username">{{ currentUser?.userName }}</summary>
-                        <summary class="history">{{ post.createdAt | dateAgo }}</summary>
+                    <div [ngClass]="(!readMoreIndices.has(i)) ? 'feed-body-more' : 'feed-body'">
+                        <h3>{{post.title}}</h3>
+                        <p>{{post.body}}</p>
                     </div>
-                </div>
-                <div [ngClass]="(!readMoreIndices.has(i)) ? 'feed-body-more' : 'feed-body'">
-                    <h3>{{post.title}}</h3>
-                    <p>{{post.body}}</p>
-                </div>
-                <!-- <div class="feed-read-more">
-                    <a *ngIf="!readMoreIndices.has(i)" (click)="showMoreContent(i)">Read More</a>
-                    <a *ngIf="readMoreIndices.has(i)" (click)="showLessContent(i)">Read Less</a>
-                </div> -->
-                <div class="feed-comments" *ngIf="post.isComment">
-                    <div class="comments-display" *ngIf="post.comments?.length != 0">
-                        <a *ngIf="!commentDisplayIndices.has(i)" (click)="showComments(i)">View <span>{{ post.comments?.length }}</span> Comments</a>
-                        <a *ngIf="commentDisplayIndices.has(i)" (click)="hideComments(i)">Hide Comments</a>
-                    </div>
-                    <div class="comments-display" *ngIf="post.comments?.length == 0">
-                        <span>No Comments Yet</span>
-                    </div>
-                    <div class="comment-section" *ngIf="commentDisplayIndices.has(i)">
-                        <div class="feed-comment" *ngFor="let comment of post.comments;let j = index">
-                            <div class="feed-comment-body">
-                                <div class="comment-head">
-                                    <div class="comment-img">
-                                        <img src="/assets/img/smile.jpg" alt="profile-image">
+                    <!-- <div class="feed-read-more">
+                        <a *ngIf="!readMoreIndices.has(i)" (click)="showMoreContent(i)">Read More</a>
+                        <a *ngIf="readMoreIndices.has(i)" (click)="showLessContent(i)">Read Less</a>
+                    </div> -->
+                    <div class="feed-comments" *ngIf="post.isComment">
+                        <div class="comments-display" *ngIf="post.comments?.length != 0">
+                            <a *ngIf="!commentDisplayIndices.has(i)" (click)="showComments(i)">View <span>{{ post.comments?.length }}</span> Comments</a>
+                            <a *ngIf="commentDisplayIndices.has(i)" (click)="hideComments(i)">Hide Comments</a>
+                        </div>
+                        <div class="comments-display" *ngIf="post.comments?.length == 0">
+                            <span>No Comments Yet</span>
+                        </div>
+                        <div class="comment-section" *ngIf="commentDisplayIndices.has(i)">
+                            <div class="feed-comment" *ngFor="let comment of post.comments;let j = index">
+                                <div class="feed-comment-body">
+                                    <div class="comment-head">
+                                        <div class="comment-img">
+                                            <img src="/assets/img/smile.jpg" alt="profile-image">
+                                        </div>
+                                        <div class="comment-detail">
+                                            <summary class="username">{{ currentUser?.userName }}</summary>
+                                            <summary class="history">{{ comment.createdAt | dateAgo }}</summary>
+                                        </div>
                                     </div>
-                                    <div class="comment-detail">
-                                        <summary class="username">{{ currentUser?.userName }}</summary>
-                                        <summary class="history">{{ comment.createdAt | dateAgo }}</summary>
+                                    <div class="feed-comment-body-content">
+                                        {{ comment.content }}
                                     </div>
-                                </div>
-                                <div class="feed-comment-body-content">
-                                    {{ comment.content }}
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="comment-btn-container" *ngIf="commentIndex != i">
-                        <button type="button" class="btn-comment" (click)="addComment(i)">Comment</button>
-                    </div>
-                    <div class="feed-new-comment" *ngIf="commentIndex == i" [formGroup]="commentForm">
-                        <textarea class="feed-new-comment-textarea" placeholder="Add Comment..." formControlName="comment"></textarea>
-                        <div class="feed-new-comment-btn-container">
-                            <button class="btn-cancel" type="button" (click)="toggleComment()">Cancel</button>
-                            <button [ngClass]="(commentForm.valid == false) ? 'btn-comment-post-error' : 'btn-comment-post'" type="button" (click)="postComment(post.userId, post.id, i)">Post</button>
+                        <div class="comment-btn-container" *ngIf="commentIndex != i">
+                            <button type="button" class="btn-comment" (click)="addComment(i)">Comment</button>
+                        </div>
+                        <div class="feed-new-comment" *ngIf="commentIndex == i" [formGroup]="commentForm">
+                            <textarea class="feed-new-comment-textarea" placeholder="Add Comment..." formControlName="comment"></textarea>
+                            <div class="feed-new-comment-btn-container">
+                                <button class="btn-cancel" type="button" (click)="toggleComment()">Cancel</button>
+                                <button [ngClass]="(commentForm.valid == false) ? 'btn-comment-post-error' : 'btn-comment-post'" type="button" (click)="postComment(post.userId, post.id, i)">Post</button>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="feed-foot">
-                    <div class="feed-foot-right" >
-                        <div *ngFor="let i of post.tag" class="tags">
-                            <span (click)="tags_search()">{{i}}</span>
+                    <div class="feed-foot">
+                        <div class="feed-foot-right" >
+                            <div *ngFor="let i of post.tag" class="tags" (click)="tags_search()">
+                                {{i}}
+                            </div>
                         </div>
                     </div>
-                </div>
-    
-            </div>
-        </div>
-        <div class="feeds" *ngIf="isLoading | async">
-            <div class="load-card">
-                <div class="load-head">
-                    <app-spinner [type]="'small'"></app-spinner>
-                    <app-spinner [type]="'small'"></app-spinner>
-                </div>
-                <div class="load-body">
-                    <app-spinner [type]="'big'"></app-spinner>
-                    <app-spinner [type]="'big'"></app-spinner>
+        
                 </div>
             </div>
-        </div>
-        <!-- <app-spinner *ngIf="isLoading | async"></app-spinner> -->
-        <div class="posts-end" *ngIf="isLast">
-            <span>You've reached the end</span>
-        </div>
-    </div>
-    <div class = "right-container">
-    
-    <div class="container-feeds">
-        <h1>Popular tags</h1>
-        <div>
-            <div *ngFor="let i of tags" class="tags">
-                <a href="#">{{i}}</a>
+            <div class="feeds" *ngIf="isLoading | async">
+                <div class="load-card">
+                    <div class="load-head">
+                        <app-spinner [type]="'small'"></app-spinner>
+                        <app-spinner [type]="'small'"></app-spinner>
+                    </div>
+                    <div class="load-body">
+                        <app-spinner [type]="'big'"></app-spinner>
+                        <app-spinner [type]="'big'"></app-spinner>
+                    </div>
+                </div>
             </div>
+            <!-- <app-spinner *ngIf="isLoading | async"></app-spinner> -->
+            <div class="posts-end" *ngIf="isLast">
+                <span>You've reached the end</span>
+            </div>
+        </div>
+        <div class = "right-container">
+        
+        <div class="container-feeds">
+            <h1>Popular tags</h1>
+            <div>
+                <div *ngFor="let i of tags" class="tags">
+                    <a href="#">{{i}}</a>
+                </div>
+            </div>
+            
         </div>
         
-    </div>
-    
+        </div>
     </div>
 </div>

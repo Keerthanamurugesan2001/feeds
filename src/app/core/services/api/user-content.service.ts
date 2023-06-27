@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Page } from '../../models/Page';
 
-const baseURL: string = 'https://8de4-14-98-32-198.ngrok-free.app/api/v1/';
+const baseURL: string = 'https://f465-14-98-32-198.ngrok-free.app/api/v1/';
 
 @Injectable({
   providedIn: 'root'
