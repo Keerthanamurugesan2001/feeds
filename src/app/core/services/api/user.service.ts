@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { BasicUserDetails } from '../../models/BasicUserDetails';
 import { successMsg } from '../../models/SuccessAndErrorMsg';
 
-const baseURL: string = 'http://localhost:3000/api/v1/';
+const baseURL: string = 'https://4c44-14-98-32-198.ngrok-free.app/api/v1/';
 
 @Injectable({
   providedIn: 'root'
