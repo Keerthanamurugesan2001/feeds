@@ -18,11 +18,15 @@
         gap: 35px;
         list-style-type: none;
         .nav-tab {
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             width: fit-content;
             height: 50px;
+            button{
+                cursor: pointer;
+            }
             .btn-nav {
                 height: 50px;
                 color: white;
@@ -62,4 +66,14 @@
     .header {
         right: 0;
     }
+}
+
+::ng-deep .cdk-overlay-pane{
+    width: 122.7656px !important;
+    top: 39.5px !important;
+    left: 1502.61px !important;
+}
+
+::ng-deep .maticon{
+    width: 30px !important;
 }

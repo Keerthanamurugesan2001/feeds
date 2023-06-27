@@ -21,8 +21,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './featured/login/login.component';
 import { SpinnerComponent } from './core/layout/spinner/spinner.component';
 import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
-
-
+import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +51,8 @@ import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
     MatChipsModule,
     HttpClientModule,
     MatIconModule,
+    MatSelectModule,
+    MatFormFieldModule
   ],
   providers: [
     // {
