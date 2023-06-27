@@ -21,8 +21,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { LoginComponent } from './featured/login/login.component';
 import { SpinnerComponent } from './core/layout/spinner/spinner.component';
 import { DateAgoPipe } from './shared/pipes/date-ago.pipe';
+import { FormComponent } from './shared/custom-components/form/form.component';
+import { BaseUrlInterceptor } from './interceptor/api.interceptor';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -37,7 +40,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     SettingsComponent,
     LoginComponent,
     SpinnerComponent,
-    DateAgoPipe
+    DateAgoPipe,
+    FormComponent
   ],
   imports: [
     BrowserModule,
@@ -55,9 +59,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
     MatFormFieldModule
   ],
   providers: [
-    // {
-    //   provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true
-    // }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: BaseUrlInterceptor,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent]
 })

@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
   isNotLoading: Subject<boolean> = this.loaderService.not_loader;
   public borderBottom = "border-bottom"
   public is_global = true
-  public is_not_global = false
   public currentUser: BasicUserDetails | null = this.userService.getUserDetails();
   public posts: PostDetailsDTO[] = [];
   public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
@@ -53,9 +52,9 @@ export class HomeComponent implements OnInit {
       this.loaderService.hide();
     }, 500);
   }
-
-  yourfeeds() {
-    this.is_not_global = true
+  
+  yourfeeds(): void{
+    this.loaderService.show();
     this.is_global = false
     this.isLast = false;
     this.posts = [];
@@ -66,7 +65,6 @@ export class HomeComponent implements OnInit {
 
   globalfeeds() {
     this.is_global = true
-    this.is_not_global = false
     this.isLast = false;
     this.posts = [];
     this.totalCount = -1;

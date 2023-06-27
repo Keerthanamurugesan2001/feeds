@@ -13,11 +13,11 @@ export class UserCommentService {
   constructor(private http: HttpClient) {}
 
   postUserComment(commentDetails: CommentDetails): Observable<CommentDetails> {
-    return this.http.post<CommentDetails>(baseURL + 'comment/insert', commentDetails);
+    return this.http.post<CommentDetails>('comment/insert', commentDetails);
   }
 
   getAllCommentsForPost(postId: number): Observable<CommentDetails[]> {
-    return this.http.get<CommentDetails[]>(baseURL + 'comment/get?id=' + postId);
+    return this.http.get<CommentDetails[]>('comment/get?id=' + postId);
   }
 
 }

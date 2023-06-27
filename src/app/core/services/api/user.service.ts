@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { User, UserCredential, UserToken } from '../../models/User';
 import { Observable } from 'rxjs';
 import { BasicUserDetails } from '../../models/BasicUserDetails';
+import { successMsg } from '../../models/SuccessAndErrorMsg';
 
 const baseURL: string = 'https://f465-14-98-32-198.ngrok-free.app/api/v1/';
 
@@ -36,10 +37,10 @@ export class UserService {
   }
 
   create_user(details:User){
-    return this.http.post(baseURL + 'auth/register', details)
+    return this.http.post<successMsg>('auth/register', details)
   }
 
   user_login(details:UserCredential): Observable<UserToken>{
-    return this.http.post<UserToken>(baseURL + 'auth/login', details)
+    return this.http.post<UserToken>('auth/login', details)
   }
 }

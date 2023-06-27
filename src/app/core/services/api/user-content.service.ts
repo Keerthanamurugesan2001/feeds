@@ -14,15 +14,15 @@ export class UserContentService {
   constructor(private http: HttpClient) {}
 
   getUserGlobalContent(pageInfo: Page): Observable<PostDetails[]> {
-    return this.http.post<PostDetails[]>(baseURL + 'post/all', pageInfo);
+    return this.http.post<PostDetails[]>('post/all', pageInfo);
   }
 
   getUserLocalContent(pageInfo: Page): Observable<PostDetails[]> {
-    return this.http.post<PostDetails[]>(baseURL + 'post/yours', pageInfo);
+    return this.http.post<PostDetails[]>('post/yours', pageInfo);
   }
 
   postUserContent(details: PostDetails): Observable<PostDetails> {
-    return this.http.post<PostDetails>(baseURL + 'post', details);
+    return this.http.post<PostDetails>('post', details);
   }
 
 }

@@ -2,34 +2,17 @@
     <div class="container">
         <div class="login-container">
             <h1>Create new account</h1>
-            <h2>Don't have account.  <a href="\signin">Create One!</a></h2>
-            <div class="alert"> 
+            <h2>Don't have account. <a href="\signin">Create One!</a></h2>
+            <div class="alert" #closebtn [style.display]="show_error_msg ? 'block' : 'none'">
                 <strong>{{msgTitle}}</strong> {{msg}}
-              </div>
-            <form [formGroup]="userForm">
-                <div class="form-group">
-                    <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" type="text" class="form-control"/>
-                        <mat-icon matSuffix><span class="material-symbols-outlined">
-                            contacts
-                            </span>
-                        </mat-icon>
-                    </mat-form-field>
-                </div>
-                <div class="form-group">
-                    <mat-form-field>
-                        <mat-label>Password</mat-label>
-                        <input matInput formControlName="password" type="password" class="form-control"/>
-                        <mat-icon matSuffix><span class="material-symbols-outlined">
-                            visibility
-                            </span>
-                        </mat-icon>
-                    </mat-form-field>  
-                </div>
-                <button mat-raised-button color="success" (click)="login()" type="submit">Login</button>
-            </form>
+                <button (click)="close_btn()">X</button>
+            </div>
         </div>
+
+        <app-form [formModel]="formFields" #submit (dataEvent)="login($event)"></app-form>
         
     </div>
+    
+    
+    
 </div>

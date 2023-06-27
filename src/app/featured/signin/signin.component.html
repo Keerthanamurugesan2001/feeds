@@ -3,39 +3,11 @@
         <div class="login-container">
             <h1>Create new account</h1>
             <p>Already Have Account <a href="/login">Log in</a></p>
-    
-            <form [formGroup]="userForm">
-                <div class="form-group">
-                    <mat-form-field>
-                        <mat-label>Username</mat-label>
-                        <input matInput formControlName="username" type="text" class="form-control"/>
-                        <mat-icon matSuffix><span class="material-symbols-outlined">
-                            contacts
-                            </span></mat-icon>
-                    </mat-form-field>
-                </div>
-                
-                <div class="form-group">
-                    <mat-form-field>
-                        <mat-label>Email</mat-label>
-                        <input matInput formControlName="email" type="text" class="form-control"/>
-                        <mat-icon matSuffix><span class="material-symbols-outlined">
-                            mail
-                            </span></mat-icon>
-                    </mat-form-field>            
-                </div>
-                <div class="form-group">
-                    <mat-form-field>
-                        <mat-label>Password</mat-label>
-                        <input matInput formControlName="password" type="password" class="form-control"/>
-                        <mat-icon matSuffix><span class="material-symbols-outlined">
-                            visibility
-                            </span>
-                        </mat-icon>
-                    </mat-form-field>  
-                </div>
-                <button mat-raised-button color="success" (click)="signIn()" type="submit">Signin</button>
-            </form>
+            <div class="alert" #closebtn [style.display]="show_error_msg ? 'block' : 'none'">
+                <strong>{{msgTitle}}</strong> {{msg}}
+                <button (click)="close_btn()">X</button>
+            </div>
+            <app-form [formModel]="formFields" (dataEvent)="signIn($event)"></app-form>
         </div>
         
     </div>
