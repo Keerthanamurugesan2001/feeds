@@ -1,0 +1,16 @@
+<div class="background">
+    <div class="container">
+        <div class="login-container">
+            <h1>Create new account</h1>
+            <p>Already Have Account <a href="/login">Log in</a></p>
+            <div class="alert" #closebtn [style.display]="show_error_msg ? 'block' : 'none'">
+                <strong>{{msgTitle}}</strong> {{msg}}
+                <button (click)="close_btn()">X</button>
+            </div>
+            <app-form [formModel]="formFields" (dataEvent)="signIn($event)"></app-form>
+        </div>
+        
+    </div>
+    
+    
+</div>

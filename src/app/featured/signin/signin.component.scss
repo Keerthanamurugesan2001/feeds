@@ -1,0 +1,17 @@
+.login-container{
+    text-align: center;
+    .alert{
+        background-color: rgb(245, 187, 187);
+        color: red;
+        width: 50%;
+        padding: 20px;
+        float: right;
+        button{
+            float: right;
+            border: none;
+            background: inherit;
+            font-size: 15px;
+            vertical-align: center;
+        }
+    }
+}

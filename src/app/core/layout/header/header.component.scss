@@ -1,32 +1,79 @@
 .header {
+    position: sticky;
+    top: 0;
+    z-index: 99999;
     display: flex;
     justify-content: right;
     align-items: center;
     height: 15px;
     margin-bottom: 25px;
     padding: 20px;
-    background-color: black;
+    // background-color: var(--color);
     font-weight: bolder;
     .nav-bar {
         display: flex;
         justify-content: left;
         flex-direction: row;
         width: fit-content;
-        gap: 50px;
+        gap: 35px;
         list-style-type: none;
         .nav-tab {
+            cursor: pointer;
             display: flex;
             justify-content: center;
             align-items: center;
             width: fit-content;
             height: 50px;
-        }
-        .nav-tab:hover {
-            border-bottom: 1px solid white;
-            transition: 1s;
-        }
-        li {
-            cursor: pointer;
+            button{
+                cursor: pointer;
+            }
+            .btn-nav {
+                height: 50px;
+                // color: white;
+                // background-color: var(--color);
+                border-style: unset;
+                font-weight: lighter;
+                font-size: medium;
+                font-family: 'Courier New', Courier, monospace;
+            }
+            .btn-nav-current {
+                height: 50px;
+                // color: white;
+                // background-color: var(--color);
+                border-style: unset;
+                font-weight: lighter;
+                font-size: medium;
+                font-family: 'Courier New', Courier, monospace;
+                border-bottom: 2px solid #4CAF50;
+                font-weight:bolder;
+            }
+            .btn-nav:hover {
+                border-bottom: 2px solid #4CAF50;
+                font-weight:bolder;
+                transition: 0.1s;
+            }
         }
     }
+}
+
+@media all and (max-width: 1034px) {
+    .header {
+        position: sticky;
+        right: 0%;
+    }
+}
+@media all and (max-width: 700px) {
+    .header {
+        right: 0;
+    }
+}
+
+::ng-deep .cdk-overlay-pane{
+    width: 122.7656px !important;
+    margin-left: -60px;
+}
+
+::ng-deep .mat-mdc-select{
+    width: 0 !important;
+    margin-left: 5px; 
 }

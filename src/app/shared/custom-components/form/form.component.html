@@ -1,0 +1,51 @@
+<div class="container">
+    <form [formGroup]="dynamicFormGroup" (ngSubmit)="save()">
+        <div *ngFor="let f of formModel;">
+            <div class="form-group" *ngIf="f.type != 'button'; else button">
+                <mat-form-field>
+                    <mat-label>{{f.label}}</mat-label>
+
+                    <input matInput [formControlName]="f.formControlName"
+                    *ngIf="f.type != 'password'; else passwordField" [type]="f.type"
+                        class="form-control" />
+                    <ng-template #passwordField>
+                        <input matInput [formControlName]="f.formControlName"
+                   [type]="isVisbile? 'text': f.type"
+                        class="form-control" />
+                    </ng-template>
+
+                    <mat-icon matSuffix><span (click)="toggle_visiblity()" class="material-symbols-outlined">
+
+                            <span *ngIf="f.type != 'password'">{{f.icon}}</span>
+                            <span *ngIf="f.type == 'password' && !isVisbile">{{f.icon}}</span>
+                            <span *ngIf="f.type == 'password' && isVisbile">visibility</span>
+                        </span></mat-icon>
+                </mat-form-field>
+                <div class="errors"
+                    *ngIf="dynamicFormGroup.get(f.formControlName)?.invalid && (dynamicFormGroup.get(f.formControlName)?.touched || dynamicFormGroup.get(f.formControlName)?.dirty)">
+                    <div *ngIf="dynamicFormGroup.get(f.formControlName)?.hasError('required')">
+                        {{f.label}} is required
+                    </div>
+
+                    <div *ngIf="dynamicFormGroup.get(f.formControlName)?.hasError('minlength')">
+                        {{f.label}} must be at least 8 characters
+                    </div>
+
+                    <div class="error-text"
+                        *ngIf="dynamicFormGroup.get(f.formControlName)?.hasError('passwordStrength')">
+                        {{dynamicFormGroup.get(f.formControlName)?.errors?.['passwordStrength']}}
+                    </div>
+                    <div class="error-text" *ngIf="dynamicFormGroup.get(f.formControlName)?.hasError('pattern')">
+                        {{f.label}} must be like user@gmail.co
+                    </div>
+                </div>
+            </div>
+            <ng-template #button>
+                <button mat-raised-button color="success" type="submit">{{f.label}}</button>
+            </ng-template>
+
+        </div>
+
+    </form>
+
+</div>
