@@ -10,7 +10,7 @@ export class BaseUrlInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler) {
 
         const authToken = this.authService.getToken();
-        const baseURL = 'https://e46d-14-98-32-198.ngrok-free.app/api/v1/'
+        const baseURL = 'https://f3d6-14-98-32-198.ngrok-free.app/api/v1/'
         const noAuthRequired = [
             'auth/login',
             'auth/register'

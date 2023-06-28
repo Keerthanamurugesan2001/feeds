@@ -11,24 +11,25 @@ export class HeaderComponent {
   public fontColor = 'white';
   @Input() currentTab: string = '';
   colors: any[] = [
-    {value: 'red_and_white', viewValue: 'Red & white'},
-    {value: 'blue_and_green', viewValue: 'Blue & Green'},
-    {value: 'black_and_white', viewValue: 'Black & White'}
+    {value: 'red', viewValue: 'Red'},
+    {value: 'blue', viewValue: 'Blue'},
+    {value: 'black', viewValue: 'Black'}
   ];
 
   constructor(private themeService: ThemeServiceService) {}
 
   public colorChange(value: string){
+    console.log(value)
     this.themeService.assignValue(value);
-    if (value === 'red_and_white'){
-      this.backgroundColor = 'white';
-      this.fontColor = 'black';
+    if (value === 'red'){
+      this.backgroundColor = 'rgb(162 10 10)';
+      this.fontColor = 'white';
     }
-    else if (value === 'blue_and_green'){
+    else if (value === 'blue'){
       this.backgroundColor = '#5a5aff';
       this.fontColor = 'white';
     }
-    else if (value === 'black_and_white'){
+    else if (value === 'black'){
       this.backgroundColor = 'black';
       this.fontColor = 'white';
     }

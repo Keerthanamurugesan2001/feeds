@@ -11,8 +11,8 @@
             cursor: pointer;
             width: 100px;
             padding: 10px;
-            background-color: #000000;
-            color: #FFFFFF;
+            background-color: var(--btn-bg-color) !important;
+            color: var(--btn-color) !important;
             border-style: none;
         }
         .small, .medium, .large{
@@ -28,6 +28,7 @@
 }
 .left-container{
     width: 80%;
+    color: #FFF;
     .load-card {
         display: flex;
         flex-direction: column;
@@ -85,7 +86,7 @@
             }
             .pageno a.active {
                 border-radius: 5px;
-                background-color: #4CAF50;
+                background-color: var(--primary-color);
             }
         }
         .paginator-page a {
@@ -100,6 +101,7 @@
 }
 .right-container{
     width: 20%;
+    color: #FFF;
 }
 .feeds-header{
     display: flex;
@@ -113,7 +115,7 @@
 .feeds {
     border-radius: 10px;
     background-color: #3e3e3e;
-    box-shadow: #4CAF50 0px 0px 5px 5px;
+    box-shadow: var(--primary-color) 0px 0px 5px 5px;
     padding: 20px;
     margin: 30px;
     width: 800px;
@@ -122,13 +124,14 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        color: #FFF;
         .feed-read-more {
             display: flex;
             justify-content: left;
             align-items: center;
             a {
                 text-decoration: none;
-                color: #4CAF50;
+                color: var(--primary-color);
                 cursor: pointer;
             }
         }
@@ -176,7 +179,7 @@
             text-decoration: none;
         }
         a:hover {
-            color: #4CAF50;
+            color: var(--primary-color);
         }
     }
     .comment-section{
@@ -233,7 +236,7 @@
         .btn-comment {
             width: 120px;
             height: 45px;
-            background-color: #4CAF50;
+            background-color: var(--primary-color);
             color: white;
             font-weight: 800;
             font-size: 17px;
@@ -275,7 +278,7 @@
             .btn-comment-post {
                 width: 75px;
                 height: 30px;
-                background-color: #4CAF50;
+                background-color: var(--primary-color);
                 color: white;
                 font-weight: bold;
                 border-radius: 5px;
@@ -286,7 +289,7 @@
             .btn-comment-post-error {
                 width: 75px;
                 height: 30px;
-                background-color: #4CAF50;
+                background-color: var(--primary-color);
                 color: white;
                 font-weight: bold;
                 border-radius: 5px;
@@ -308,7 +311,7 @@
     margin-right: auto;
     li {
         list-style-type: none;
-        color: #4CAF50;
+        color: var(--primary-color);
         cursor: pointer;
     }
 }
@@ -341,7 +344,7 @@
     }
     .container-feeds{
         // position: fixed;
-        background-color: rgb(86 211 136);
+        background-color: var(--primary-color);
         padding: 20px;
         border-radius: 5px;
         .tags{
@@ -352,10 +355,10 @@
     }
 }
 .border-bottom{
-    border-bottom: 2px solid rgb(90, 94, 90);
+    border-bottom: 2px solid var(--primary-color);
 }
 .border-bottom-tabs{
-    border-bottom:  2px solid rgb(85, 202, 85);
+    border-bottom:  2px solid var(--primary-color);
 }
 a{
     cursor: pointer;
@@ -439,6 +442,7 @@ a{
     margin: auto;
     .left-container{
         width: 100% !important;
+        color: #FFF;
         .feeds{
             width: 90% !important;
         }
@@ -448,6 +452,7 @@ a{
         padding: 10px !important;
         width: 40% !important;
         height: auto !important;
+        color: #FFF !important;
         a{
             cursor: pointer;
             text-decoration: none;
@@ -460,7 +465,7 @@ a{
         .container-feeds{
             width: 100% !important;
             height: auto !important;
-            background-color: rgb(86 211 136);
+            background-color: var(--primary-color);
             padding: 10px 15px 20px 20px !important;
             border-radius: 5px;
             .tags{

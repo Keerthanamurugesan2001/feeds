@@ -14,7 +14,7 @@
 .footer {
   z-index: 99999;
   position: sticky;
-  background: #4CAF50;
+  background: var(--bg-color);
   height: 1px;
   left: 0;
   bottom: 0;
@@ -27,7 +27,7 @@
 }
 
 .footer p {
-  color: #fff;
+  color: var(--font-color);
   font-size: 1rem;
   font-weight: 300;
 }

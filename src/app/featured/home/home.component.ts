@@ -26,8 +26,10 @@ export class HomeComponent implements OnInit {
   public posts: PostDetailsDTO[] = [];
   public tags = ['welcome', 'hi', 'hello', 'jion', 'sdfjl']
   public enableReadMore: boolean = false;
-  public color!: string;
-  public backgroundColor!: string;
+  public fontColor!: string;
+  public backgroundColor: string = '#4CAF50';
+  public buttonBGColor: string = '#000000';
+  public buttonColor: string = '#FFFFFF';
   toogleVal: string = 'Read More';
   commentIndex: number = -1;
   commentForm = this.fb.group({
@@ -57,7 +59,6 @@ is_not_global: any;
     }, 500);
 
     this.themeService.selectedColor$.subscribe((value: string) => {
-      // Run your function here
       this.getColor(value);
     });
   }
@@ -267,25 +268,28 @@ is_not_global: any;
 
   private getColor(value: any){
     console.log('hey', value)
-    // if (this.themeService.selectedTheme === 'red_and_white'){
-    //   this.backgroundColor = 'white';
-    //   this.color = 'black';
-    // }
-    // else if (this.themeService.selectedTheme === 'blue_and_green'){
-    //   this.backgroundColor = '#5a5aff';
-    //   this.color = 'white';
-    // }
-    // else if (this.themeService.selectedTheme === 'black_and_white'){
-    //   this.backgroundColor = 'black';
-    //   this.color = 'white';
-    // }
+    if (value === 'red'){
+      this.backgroundColor = 'rgb(162 10 10)';
+      this.fontColor = 'white';
+    }
+    else if (value === 'blue'){
+      this.backgroundColor = '#5a5aff';
+      this.fontColor = 'white';
+    }
+    else if (value === 'black'){
+      console.log(this.buttonBGColor, this.buttonColor)
+      this.backgroundColor = 'black';
+      this.fontColor = 'white';
+      // this.buttonBGColor = '#FFFFFF';
+      // this.buttonColor = '#000000';
+    }
   }
 
   public getStyle(){
     // this.getColor()
     return {
       'background-color': this.backgroundColor,
-      'color': this.color
+      'color': this.fontColor
     }
   }
 }

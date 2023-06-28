@@ -1,11 +1,11 @@
 <div class="feed-page">
-    <div class="customize" >
-        <button [ngStyle]="{'--primary-color': backgroundColor}" [ngClass]="{'small': selectedCustomizeButton === 'small'}" (click)="customizeOnClick('small')">Small</button>
-        <button [ngStyle]="{'--primary-color': backgroundColor}" [ngClass]="{'medium': selectedCustomizeButton === 'medium'}" (click)="customizeOnClick('medium')">Medium</button>
-        <button [ngStyle]="{'--primary-color': backgroundColor}" [ngClass]="{'large': selectedCustomizeButton === 'large'}" (click)="customizeOnClick('large')">Large</button>
+    <div class="customize" [ngStyle]="{'--primary-color': backgroundColor, '--font-color': fontColor, '--btn-bg-color': buttonBGColor, '--btn-color': buttonColor}">
+        <button [ngClass]="{'small': selectedCustomizeButton === 'small'}" (click)="customizeOnClick('small')">Small</button>
+        <button [ngClass]="{'medium': selectedCustomizeButton === 'medium'}" (click)="customizeOnClick('medium')">Medium</button>
+        <button [ngClass]="{'large': selectedCustomizeButton === 'large'}" (click)="customizeOnClick('large')">Large</button>
     </div>
     <div [ngClass]="selectedCustomizeButton === 'large' ? 'large-container' : 'container'">
-        <div class = "left-container">
+        <div class = "left-container" [ngStyle]="{'--primary-color': backgroundColor, '--font-color': fontColor}">
             <div class="feeds-header" [ngClass]="{'border-bottom': true}">
                 <span class="head" (click)="yourfeeds()" [ngClass]="{'border-bottom-tabs': !is_global}">Your feed</span>
                 <span class="head" (click)="globalfeeds()" [ngClass]="{'border-bottom-tabs': is_global}">Global feed</span>
@@ -94,18 +94,16 @@
                 <span>You've reached the end</span>
             </div>
         </div>
-        <div class = "right-container">
-        
-        <div class="container-feeds">
-            <h1>Popular tags</h1>
-            <div>
-                <div *ngFor="let i of tags" class="tags">
-                    <a href="#">{{i}}</a>
+        <div class = "right-container" [ngStyle]="{'--primary-color': backgroundColor, '--font-color': fontColor}">
+            <div class="container-feeds">
+                <h1>Popular tags</h1>
+                <div>
+                    <div *ngFor="let i of tags" class="tags">
+                        <a href="#">{{i}}</a>
+                    </div>
                 </div>
+                
             </div>
-            
-        </div>
-        
         </div>
     </div>
 </div>

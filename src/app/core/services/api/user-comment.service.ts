@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { CommentDetails } from '../../models/CommentDetails';
 import { Observable } from 'rxjs';
 
-const baseURL: string = 'https://f465-14-98-32-198.ngrok-free.app/api/v1/';
+const baseURL: string = 'https://f3d6-14-98-32-198.ngrok-free.app/api/v1/';
 
 @Injectable({
   providedIn: 'root'
