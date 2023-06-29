@@ -22,7 +22,7 @@ export class LoginComponent {
   constructor(private route: Router, private $user: UserService, private fb: FormBuilder) {
     this.formFields = [
       { label: 'Email', type: 'email', formControlName: 'email', icon: 'contacts' },
-      { label: 'Password', type: 'password', formControlName: 'password', icon: 'visibility' },
+      { label: 'Password', type: 'password', formControlName: 'password', icon: 'visibility_off' },
       { label: 'Login', type: 'button', formControlName: '', icon: '' }
     ]
   }
