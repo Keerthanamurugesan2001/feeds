@@ -8,8 +8,8 @@ import { LoginComponent } from './featured/login/login.component';
 import { AuthenticationService } from './core/services/auth/authentication.service';
 
 const routes: Routes = [
-  // { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
-  { path: 'home', component: HomeComponent},
+  { path: 'home', component: HomeComponent, canActivate: [AuthenticationService] },
+  // { path: 'home', component: HomeComponent},
   { path: 'newfeed', component: NewfeedComponent,  canActivate: [AuthenticationService] },
   { path:'signin', component: SigninComponent },
   {path: 'login', component: LoginComponent},

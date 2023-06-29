@@ -10,6 +10,9 @@ import { BasicUserDetails } from 'src/app/core/models/BasicUserDetails';
 import { PostDetailsDTO } from 'src/app/core/models/PostDetailsDTO';
 import { Subject } from 'rxjs/internal/Subject';
 import { ThemeServiceService } from 'src/app/core/services/theme/theme-service.service';
+import { translate } from '@vitalets/google-translate-api';
+import { TranslatorService } from 'src/app/core/services/api/translator.service';
+import { TranslateInterface } from 'src/app/core/models/translator';
 
 @Component({
   selector: 'app-home',
@@ -46,7 +49,8 @@ is_not_global: any;
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
     private userCommentService: UserCommentService, private loaderService: LoaderService,
-    private userService: UserService, private themeService: ThemeServiceService) {}
+    private userService: UserService, private themeService: ThemeServiceService,
+    private translateService: TranslatorService) {}
 
     @ViewChild('pBody') postBody!: ElementRef;
 
@@ -292,4 +296,17 @@ is_not_global: any;
       'color': this.fontColor
     }
   }
+  async translate_text(post: PostDetailsDTO){
+
+      let translate_content: TranslateInterface = {
+        title: post.title,
+        body: post.body,
+        lang: 'ta'
+      }
+      this.translateService.translateText(translate_content).subscribe((res) => {
+        post.title = res.title? res.title: post.title,
+        post.body = res.body? res.body: post.body
+      });
+    }
 }
+

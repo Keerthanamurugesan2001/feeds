@@ -22,6 +22,10 @@
                             <summary class="history">{{ post.createdAt | dateAgo }}</summary>
                         </div>
                     </div>
+                    <div class="translate">
+                        <button type="button" class="cmn_btn" (click)="translate_text(post)">Translate</button>
+                        
+                    </div>
                     <div [ngClass]="(!readMoreIndices.has(i)) ? 'feed-body-more' : 'feed-body'">
                         <h3>{{post.title}}</h3>
                         <p>{{post.body}}</p>
@@ -76,6 +80,7 @@
                     </div>
         
                 </div>
+                
             </div>
             <div class="feeds" *ngIf="isLoading | async">
                 <div class="load-card">
@@ -105,5 +110,6 @@
                 
             </div>
         </div>
+        
     </div>
 </div>

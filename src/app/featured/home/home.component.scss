@@ -30,7 +30,6 @@
 }
 .left-container{
     width: 80%;
-    color: #FFF;
     .load-card {
         display: flex;
         flex-direction: column;
@@ -117,16 +116,31 @@
 .feeds {
     border-radius: 10px;
     background-color: #3e3e3e;
-    box-shadow: var(--primary-color) 0px 0px 5px 5px;
+    box-shadow: var(--primary-color) 0px 25px 20px -20px;;
     padding: 20px;
     margin: 30px;
     width: 800px;
     height: 300px;
     .feeds-container {
+        
         display: flex;
         flex-direction: column;
         gap: 10px;
         color: #FFF;
+        .translate{
+            position: relative;
+        }
+        .cmn_btn{
+            position: absolute;
+            right: 0;
+            background-color: inherit;
+            color: white;
+            font-size: medium;
+            padding: 10px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
         .feed-read-more {
             display: flex;
             justify-content: left;
@@ -342,7 +356,7 @@
         padding: 5px;
         border: 1px solid black;
         border-radius: 35px;
-        color: whitesmoke;
+        // color: whitesmoke;
     }
     .container-feeds{
         // position: fixed;
@@ -444,7 +458,6 @@ a{
     margin: auto;
     .left-container{
         width: 100% !important;
-        color: #FFF;
         .feeds{
             width: 90% !important;
         }
@@ -454,7 +467,7 @@ a{
         padding: 10px !important;
         width: 40% !important;
         height: auto !important;
-        color: #FFF !important;
+        // color: #FFF !important;
         a{
             cursor: pointer;
             text-decoration: none;
@@ -462,7 +475,7 @@ a{
             padding: 5px;
             border: 1px solid black;
             border-radius: 35px;
-            color: whitesmoke;
+            // color: whitesmoke;
         }
         .container-feeds{
             width: 100% !important;

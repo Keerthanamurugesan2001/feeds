@@ -13,7 +13,8 @@
 
 .footer {
   z-index: 99999;
-  position: sticky;
+  position: fixed;
+  width: 100%;
   background: var(--bg-color);
   height: 1px;
   left: 0;
