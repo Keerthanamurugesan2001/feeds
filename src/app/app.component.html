@@ -1,5 +1,5 @@
-<app-header [currentTab]="currentTab" ></app-header>
-<div [ngClass]="(currentTab === 'newfeed') ? 'container' : ''">
-    <router-outlet class="container" #body></router-outlet>
-</div>
-<app-footer></app-footer>
+    <app-header [currentTab]="currentTab" ></app-header>
+        <div [ngClass]="(currentTab === 'newfeed') ? 'container' : ''">
+            <router-outlet class="container" #body></router-outlet>
+        </div>
+    <app-footer></app-footer>
