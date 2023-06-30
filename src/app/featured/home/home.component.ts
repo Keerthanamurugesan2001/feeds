@@ -30,6 +30,7 @@ export class HomeComponent implements OnInit {
   public enableReadMore: boolean = false;
   public fontColor!: string;
   public backgroundColor: string = '#4CAF50';
+  public secondaryColor: string = '#365437';
   public buttonBGColor: string = '#000000';
   public buttonColor: string = '#FFFFFF';
   toogleVal: string = 'Read More';
@@ -274,21 +275,24 @@ export class HomeComponent implements OnInit {
     if (value === 'red'){
       this.backgroundColor = 'rgb(162 10 10)';
       this.fontColor = 'white';
+      this.secondaryColor = 'rgb(106 45 45)';
     }
     else if (value === 'green'){
       this.backgroundColor = '#4CAF50';
       this.fontColor = 'white';
+      this.secondaryColor = '#365437';
     }
     else if (value === 'yellow'){
       this.backgroundColor = '#bcbc15';
       this.fontColor = 'white';
+      this.secondaryColor = '#737334';
     }
     else if (value === 'black'){
-      console.log(this.buttonBGColor, this.buttonColor)
       this.backgroundColor = 'black';
       this.fontColor = 'white';
-      // this.buttonBGColor = '#FFFFFF';
-      // this.buttonColor = '#000000';
+      this.secondaryColor = '#161515';
+      this.buttonBGColor = '#FFFFFF';
+      this.buttonColor = '#000000';
     }
   }
 

@@ -9,7 +9,7 @@
     height: 15px;
     margin-bottom: 25px;
     padding: 20px;
-    // background-color: var(--color);
+    background-color: black;
     font-weight: bolder;
 
     .logo{
@@ -37,8 +37,8 @@
             }
             .btn-nav {
                 height: 50px;
-                // color: white;
-                // background-color: var(--color);
+                color: white;
+                background-color: transparent;
                 border-style: unset;
                 font-weight: lighter;
                 font-size: medium;
@@ -46,17 +46,19 @@
             }
             .btn-nav-current {
                 height: 50px;
-                // color: white;
-                // background-color: var(--color);
+                color: white;
+                background-color: transparent;
                 border-style: unset;
                 font-weight: lighter;
                 font-size: medium;
                 font-family: 'Courier New', Courier, monospace;
-                border-bottom: 2px solid #4CAF50;
+                // border-bottom: 2px solid #4CAF50;
+                border-bottom: 2px solid var(--bgColor);
                 font-weight:bolder;
             }
             .btn-nav:hover {
-                border-bottom: 2px solid #4CAF50;
+                // border-bottom: 2px solid #4CAF50;
+                border-bottom: 2px solid var(--bgColor);
                 font-weight:bolder;
                 transition: 0.1s;
             }
