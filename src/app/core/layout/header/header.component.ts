@@ -30,7 +30,7 @@ export class HeaderComponent {
       this.fontColor = 'white';
     }
     else if (value === 'black'){
-      this.backgroundColor = 'black';
+      this.backgroundColor = 'white';
       this.fontColor = 'white';
     }
     else if (value === 'yellow'){
