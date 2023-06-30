@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" [ngStyle]="{'--bgColor': backgroundColor}">
     <form [formGroup]="dynamicFormGroup" (ngSubmit)="save()">
         <div *ngFor="let f of formModel;">
             <div class="form-group" *ngIf="f.type != 'button'; else button">

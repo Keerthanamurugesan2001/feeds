@@ -23,8 +23,12 @@ export class FooterComponent {
       this.backgroundColor = 'rgb(162 10 10)';
       this.fontColor = 'white';
     }
-    else if (value === 'blue'){
-      this.backgroundColor = '#5a5aff';
+    else if (value === 'green'){
+      this.backgroundColor = '#4CAF50';
+      this.fontColor = 'white';
+    }
+    else if (value === 'yellow'){
+      this.backgroundColor = '#bcbc15';
       this.fontColor = 'white';
     }
     else if (value === 'black'){

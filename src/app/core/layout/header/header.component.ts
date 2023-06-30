@@ -7,30 +7,34 @@ import { ThemeServiceService } from '../../services/theme/theme-service.service'
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-  public backgroundColor = 'black';
+  public backgroundColor = '#4CAF50';
   public fontColor = 'white';
   @Input() currentTab: string = '';
   colors: any[] = [
+    {value: 'green', viewValue: 'Green'},
     {value: 'red', viewValue: 'Red'},
-    {value: 'blue', viewValue: 'Blue'},
-    {value: 'black', viewValue: 'Black'}
+    {value: 'yellow', viewValue: 'Yellow'},
+    {value: 'black', viewValue: 'Black'},
   ];
 
   constructor(private themeService: ThemeServiceService) {}
 
   public colorChange(value: string){
-    console.log(value)
     this.themeService.assignValue(value);
     if (value === 'red'){
       this.backgroundColor = 'rgb(162 10 10)';
       this.fontColor = 'white';
     }
-    else if (value === 'blue'){
-      this.backgroundColor = '#5a5aff';
+    else if (value === 'green'){
+      this.backgroundColor = '#4CAF50';
       this.fontColor = 'white';
     }
     else if (value === 'black'){
       this.backgroundColor = 'black';
+      this.fontColor = 'white';
+    }
+    else if (value === 'yellow'){
+      this.backgroundColor = '#bcbc15';
       this.fontColor = 'white';
     }
   }

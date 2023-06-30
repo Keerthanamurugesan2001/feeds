@@ -10,7 +10,6 @@ import { BasicUserDetails } from 'src/app/core/models/BasicUserDetails';
 import { PostDetailsDTO } from 'src/app/core/models/PostDetailsDTO';
 import { Subject } from 'rxjs/internal/Subject';
 import { ThemeServiceService } from 'src/app/core/services/theme/theme-service.service';
-import { translate } from '@vitalets/google-translate-api';
 import { TranslatorService } from 'src/app/core/services/api/translator.service';
 import { TranslateInterface } from 'src/app/core/models/translator';
 
@@ -45,7 +44,7 @@ export class HomeComponent implements OnInit {
   totalCount: number = -1;
   isLast: boolean = false;
   selectedCustomizeButton!: string;
-is_not_global: any;
+  is_not_global: any;
 
   constructor(private userContentService: UserContentService, private fb: FormBuilder,
     private userCommentService: UserCommentService, private loaderService: LoaderService,
@@ -276,8 +275,12 @@ is_not_global: any;
       this.backgroundColor = 'rgb(162 10 10)';
       this.fontColor = 'white';
     }
-    else if (value === 'blue'){
-      this.backgroundColor = '#5a5aff';
+    else if (value === 'green'){
+      this.backgroundColor = '#4CAF50';
+      this.fontColor = 'white';
+    }
+    else if (value === 'yellow'){
+      this.backgroundColor = '#bcbc15';
       this.fontColor = 'white';
     }
     else if (value === 'black'){
