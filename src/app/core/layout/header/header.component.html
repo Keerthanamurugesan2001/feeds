@@ -1,4 +1,7 @@
 <div class="header" [ngStyle]="getStyle()">
+    <div class="logo">
+        <img src="assets/img/eagle.png"/>
+    </div>
     <ul class="nav-bar">
         <div #home class="nav-tab">
             <button [ngClass]="(currentTab === 'home') ? 'btn-nav-current' : 'btn-nav'" type="button" routerLink="/home" [ngStyle]="getStyle()">Home</button>
